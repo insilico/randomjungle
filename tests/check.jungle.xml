@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created by randomJungle 0.8.6.315 under GPL v2 or later. (c) Daniel F. Schwarz 2008-2009.All rights reserved. -->
+<randomjungle>
+<options>
+<option id="file">./tests/test.dat</option>
+<option id="delimiter"> </option>
+<option id="treetype">1</option>
+<option id="ntree">1</option>
+<option id="mtry">3</option>
+<option id="depvar">0</option>
+<option id="depvarname">y</option>
+<option id="nrow">40</option>
+<option id="ncol">10</option>
+<option id="varnamesrow">0</option>
+<option id="depvarcol">0</option>
+<option id="outprefix">./tests/testjungle</option>
+<option id="skiprow">0</option>
+<option id="skipcol">0</option>
+<option id="missingcode">-99</option>
+<option id="impmeasure">1</option>
+<option id="backsel">0</option>
+<option id="nimpvar">100</option>
+<option id="downsampling">0</option>
+<option id="verbose">0</option>
+<option id="memMode">0</option>
+<option id="write">2</option>
+<option id="predict"></option>
+<option id="varproximities">0</option>
+<option id="summary">0</option>
+<option id="testlib">0</option>
+<option id="plugin"></option>
+<option id="colselection"></option>
+<option id="impute">0</option>
+<option id="gwa">0</option>
+<option id="impcont">0</option>
+<option id="transpose">0</option>
+<option id="sampleproximities">0</option>
+<option id="weightsim">0</option>
+<option id="extractdata">0</option>
+<option id="yaimp">0</option>
+<option id="seeed">123</option>
+<option id="nthreads">1</option>
+<option id="pluginpar"></option>
+<option id="maxtreedepth">15000</option>
+<option id="targetpartitionsize">1</option>
+<option id="pedfile">0</option>
+</options>
+<jungle type="raw" id="0" size="1">
+<tree id="0">
+<variable name="varID">((8,7,7,0,0,0,0))</variable><variable name="values">(((0.422041)),((0.616049)),((-1.33495)),((0)),((1)),((0)),((0)))</variable><variable name="branches">((1,6),(2,5),(3,4),(0,0),(0,0),(0,0),(0,0))</variable><variable name="classes">()</variable><variable name="indexes">()</variable><variable name="varSize">1</variable><variable name="valueWidth">1</variable><variable name="valueSize">1</variable><variable name="branchSize">2</variable><variable name="termID">MAX</variable></tree>
+</jungle>
+</randomjungle>

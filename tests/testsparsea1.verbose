@@ -1,0 +1,34 @@
+         Start: Tue Sep 13 23:54:06 2011
++---------------------+-----------------+-------------------+
+|    RandomJungle     |      1.2.362    |        2011       |
++---------------------+-----------------+-------------------+
+|    (C) 2008-2011 Daniel F Schwarz et al., GNU GPL, v2     |
+|           daniel@randomjungle.com                         |
++-----------------------------------------------------------+
+
+Output to: ./tests/testsparsea1.*
+Loading data... 
+Read 10 row(s) and 10 column(s).
+Use 10 row(s) and 6 column(s).
+Dependent variable name: PHENOTYPE
+Growing jungle...
+Number of variables: 6 (mtry = 2)
+1 thread(s) growing 500 tree(s)
+Growing time estimate: ~0 sec.
+progress: 10%
+progress: 20%
+progress: 30%
+progress: 40%
+progress: 50%
+progress: 60%
+progress: 70%
+progress: 80%
+progress: 90%
+Generating and collecting output data...
+Writing accuracy information...
+Calculating confusion matrix...
+
+Growing time: 0.01 sec
+Elapsed time: 0 sec
+Finished: Tue Sep 13 23:54:06 2011
+

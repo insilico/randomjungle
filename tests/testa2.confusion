@@ -1,0 +1,8 @@
+Iteration: 0
+Number of variables: 10
+Test/OOB set: 
+(real outcome == rows / predicted outcome == columns )	
+	0	1	error
+0	20	0	0
+1	0	20	0
+			0

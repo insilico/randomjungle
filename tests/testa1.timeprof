@@ -1,0 +1,8 @@
+JTreeCtrl~~FittingFct::getBestVariable 0
+JTreeCtrl~~makeNodeIntern 20
+RJungleCtrl~~RJungleConfusion::getAndPrintOobPredictions 0
+RJungleCtrl~~RJungleCtrl::autoBuildInternal 20
+RJungleCtrl~~RJungleGrow::growLocal::buildalltrees 20
+RJungleGrow~~cmplTree 0
+RJungleGrow~~makeTree 20
+RJungleGrow~~permImp 0

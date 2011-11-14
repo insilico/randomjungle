@@ -1,0 +1,43 @@
+file: ./tests/test.ped
+delimiter:  
+treetype: 1
+ntree: 500
+mtry: 0
+depvar: 1
+depvarname: PHENOTYPE
+nrow: 10
+ncol: 6
+varnamesrow: 0
+depvarcol: 0
+outprefix: ./tests/testsparsea1
+skiprow: 0
+skipcol: 0
+missingcode: 3
+impmeasure: 1
+backsel: 0
+nimpvar: 100
+downsampling: 0
+verbose: 0
+memmode: 2
+write: 0
+predict: 
+varproximities: 0
+summary: 0
+testlib: 0
+plugin: 
+colselection: 
+impute: 0
+gwa: 0
+impcont: 0
+transpose: 0
+sampleproximities: 0
+weightsim: 0
+extractdata: 0
+yaimp: 0
+seeed: 123
+nthreads: 0
+pedfile: 1
+maxTreeDepth: 15000
+targetPartitionSize: 1
+targetpluginPar: 
+

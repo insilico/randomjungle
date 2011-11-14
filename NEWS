@@ -1,0 +1,293 @@
+RJ VERSION 1.2.362
+
+FEATURE(S):
+- MPI downloads enabled
+
+
+RJ VERSION 1.2.361
+
+FIX(ES):
+- Option "-W": Automatic class weight adjustments of unbalanced datasets
+
+FEATURE(S):
+- Option "--oobset": Outputs the oobset of forest
+- Option "--classweights": Sets the weights of classes
+
+
+RJ VERSION 1.0.357
+
+
+RJ VERSION 1.0.355
+
+FIX(ES):
+- Permutation importance for very small sample sizes (<10)
+
+
+RJ VERSION 1.0.354
+
+FIX(ES):
+- Prediction of gown trees
+
+
+RJ VERSION 1.0.352
+
+FEATURE(S):
+- Paper was published. So, version number was changed to v1.
+
+
+RJ VERSION 0.8.6.338
+
+FIX(ES):
+- Sample Proximities and MPI
+
+
+RJ VERSION 0.8.6.336
+
+FIX(ES):
+- MPI master grows trees also
+
+
+RJ VERSION 0.8.6.333
+
+FIX(ES):
+- Sample Proximities
+
+
+RJ VERSION 0.8.6.332
+
+FIX(ES):
+- Regression trees: purity bias.
+- Minor fixes
+
+
+RJ VERSION 0.8.6.329
+
+FIX(ES):
+- Memory cleaning when using option C
+
+
+RJ VERSION 0.8.6.324
+
+FIX(ES):
+- Memory usage reduced
+
+
+RJ VERSION 0.8.6.317
+
+FIX(ES):
+- Conditional importance error messages
+
+
+RJ VERSION 0.8.6.315
+
+FEATURE(S):
+- Creating binary packages for download section
+
+
+RJ VERSION 0.8.6.305
+
+FIX(ES):
+- get power sets for twoing trees (64bit type size)
+
+
+RJ VERSION 0.8.6.303
+
+FIX(ES):
+- Prediction (can be run without spec. ntree)
+
+
+RJ VERSION 0.8.6.301
+
+FIX(ES):
+- MTRY tuning. (minor fix)
+
+
+RJ VERSION 0.8.6.299
+
+FEATURE(S):
+- Error messages
+
+
+RJ VERSION 0.8.6.295
+
+FIX(ES):
+- Conditional importance
+
+
+RJ VERSION 0.8.6
+
+FEATURE(S):
+- Conditional importance (option -K)
+  using Pearson's cor. coef. for grouping variables
+
+FIX(ES):
+- Permutation importance (permuting OOB)
+- Minor fixes (e.g. mtry >=1)
+
+
+RJ VERSION 0.8.5
+
+FIX(ES):
+- Sample proximities (now, more accurate)
+
+
+RJ VERSION 0.8.4
+
+FIX(ES):
+- Minor fixes
+
+
+RJ VERSION 0.8.3
+
+FIX(ES):
+- Minor fixes
+
+
+RJ VERSION 0.8.2
+
+FIX(ES):
+- Imputing data (thanks to Victor Enciso)
+
+
+RJ VERSION 0.8.1
+
+FIX(ES):
+- Option handling
+
+
+RJ VERSION 0.8.0
+
+FIX(ES):
+- Regression tree (CART) building 
+
+FEATURE(S):
+- Reducing memory usage (drastically)
+- Speeding up the Regression tree (CART) building process
+
+
+RJ VERSION 0.7.9
+
+FIX(ES):
+- Typo in header of variable output (option -I..)
+
+
+RJ VERSION 0.7.8
+
+FIX(ES):
+- Confusion calculation using regression trees
+
+
+RJ VERSION 0.7.7
+
+FEATURE(S):
+- Prototypes (option -N...)
+- Margins and votes rates (option -V)
+
+
+RJ VERSION 0.7.6
+
+FEATURE(S):
+- Outlier score calculation of each sample in data set (option -O...)
+
+FIX(ES):
+- Proximity calculation
+
+
+RJ VERSION 0.7.5
+
+FIX(ES):
+- Diaz Backward elimination (option -B4)
+
+
+RJ VERSION 0.7.4
+
+FIX(ES):
+- Permutation importance (added one permutation per tree)
+
+
+RJ VERSION 0.7.3
+
+FIX(ES):
+- Memory leaks
+
+
+RJ VERSION 0.7.2
+
+FIX(ES):
+- Small fixes
+
+
+RJ VERSION 0.7.1
+
+FIX(ES):
+- For parallel growing, rng seed is set correctly now.
+  (thx to Peter Chines)
+
+
+RJ VERSION 0.7.0
+
+FEATURE(S):
+- Random Forest(TM)'s Imputation (option -I...)
+- 2 new permutation importance measures: 1) Meng et al 2) Liaw, Wiener
+- Tuning parameters: Max tree depth (-k), Target partition size (-l)
+- "rjunglesparse" is additionally compiled by default
+
+FIX(ES):
+- Tree growing and importance measuring is more flexible.
+
+
+RJ VERSION 0.6.2
+
+FEATURE(S):
+- Additional information in confusion file
+  (real outcome == rows / predicted outcome == columns )
+- Compilation for using SNP data. Very small memory consumption.
+  Configure with preprocessor definition __SPARSE_DATA__
+
+FIX(ES):
+- Prediction/jungle saving with memory mode 2 (char)
+
+
+RJ VERSION 0.6.1
+
+FIX(ES):
+- Importance messures: Backward selection did not stop.
+
+
+RJ VERSION 0.6.0
+
+FEATURE(S):
+- Prediction with Option -w2 and -P (saved to prediction file)
+- prediction file is named confusion file now
+
+
+RJ VERSION 0.5.4
+
+FIX(ES):
+- Gini index value was biased by some constants
+- Importance output: first line ended with a delimeter
+
+
+RJ VERSION 0.5.3
+
+FEATURE(S):
+ - Read data from file (CSV/R/PED file).
+ - Multi CPU support (OpenMP).
+ - Classification and Regression Trees (CART) support
+ - Unsupervised / Supervised mode
+ - Different memory modes:
+   Big real numbers (double/float) and small integers (char)
+ - Imputation of missing data.
+ - User friendly variable handling.
+ - Library "librjungle.so" can be used in your own programs (c/c++).
+ - Extensive variable selection.
+ - Output a grown forest to a XML file.
+ - Automatic tree size (ntree) estimation.
+ - Output the sample proximities. (i.e. for MDS)
+ - Reliable random number generators (use of GSL)
+ - Data selection / selection (Only use selected columns listed in a file)
+ - New directory structure and use of GNU autoconf/autoheader/aclocal/automake
+
+BUGS
+ - Other tree types may not work
+ 
