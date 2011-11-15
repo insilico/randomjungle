@@ -1,6 +1,6 @@
 THE BASIC Random Jungle (RJ) README
 See "INSTALL" for help on installation
-
+Modified on 11-15-11 by Nick Davis for Mac OS X compilation addendum
 
 1. INTRODUCTION
 
@@ -56,6 +56,23 @@ optional:
 mpi:
 - mpi-default-dev
 - mpi-default-bin
+
+5. Mac OS X compilation (addendum by Nick Davis)
+Random Jungle has been successfully built on Mac OS X Lion (10.7.2).  Homebrew,
+a package manager for OS X, was used to install some of the dependencies.
+http://mxcl.github.com/homebrew.  Once installed, the following commands will
+install the missing dependencies:
+
+brew install gsl
+brew install gfortran
+brew install boost
+
+To build RJ on Mac OS X, the following configure line can be used:
+LDFLAGS="-L/usr/local/homebrew/lib -L/usr/local/homebrew/lib/gcc/i686-apple-darwin11/4.2.1/x86_64" ./configure --with-boost=/usr/local/homebrew/include
+(note, replace /usr/local/homebrew above with the location of homebrew.  The
+default location is /usr/local)
+
+
 
 Sincerely,
 Daniel
