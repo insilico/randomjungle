@@ -1,0 +1,12 @@
+# Object files
+*.o
+*.a
+*.deps
+# Binaries
+src/rjungle
+src/rjungle_static
+src/rjunglesparse
+src/rjunglesparse_static
+# Autotools generated files
+config.log
+config.status
