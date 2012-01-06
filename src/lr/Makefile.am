@@ -11,17 +11,30 @@ mysources= \
 amar.c ambs.c amdym.c amdyv_array.c amdyv.c amiv.c am_string_array.c am_string.c amvpv.c file.c genarray.c lin_conjgrad.c lr.c lrutils.c pfload.c prec.c precs.c score.c spardat.c
 
 # normal library build
-lib_LIBRARIES=liblr.a
+#lib_LIBRARIES=liblr.a
 
 # compiler flags
 #liblr_CPPFLAGS=$(mycppflags)
 
 # the list of header files that belong to the library
-liblr_a_HEADERS=$(myheaders)
+#liblr_a_HEADERS=$(myheaders)
 
 # where to install the headers on the system
-liblr_adir=$(includedir)/rjungle
+#liblr_adir=$(includedir)/rjungle
 
 # the sources to add to the library and to add to the distribution
-liblr_a_SOURCES=$(liblr_a_HEADERS) $(mysources) 
+#liblr_a_SOURCES=$(liblr_a_HEADERS) $(mysources)
 
+lib_LTLIBRARIES=liblr-1.2.362.la
+
+# compiler flags
+liblr_1_2_362_la_CPPFLAGS=$(mycppflags)
+
+# the list of header files that belong to the library
+liblr_1_2_362_la_HEADERS=$(myheaders)
+
+# where to install the headers on the system
+liblr_1_2_362_ladir=$(includedir)/rjungle
+
+# the sources to add to the library and to add to the distribution
+liblr_1_2_362_la_SOURCES=$(liblr_a_HEADERS) $(mysources)

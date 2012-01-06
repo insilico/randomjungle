@@ -19,7 +19,7 @@
 ###
 
 AC_PREREQ([2.60])
-#AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIR([m4])
 ## We want to get the version number from file 'VERSION' (rather than
 ## specifying the version info in 'configure.ac'.  Hence, we need a bit
 ## of M4 magic.  Note that M4 esyscmd has a trailing newline because the
@@ -45,8 +45,8 @@ AC_CANONICAL_HOST
 
 # add parameter(s)
 AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug],[Compile code for debugging.]), [debug_rjungle=yes])
-AC_ARG_ENABLE(mpi, AC_HELP_STRING([--enable-mpi],[Compile code for MPI support (use mpic++ not g++ compiler).]), [with_mpi=yes])
-AC_ARG_ENABLE(timeprof, AC_HELP_STRING([--enable-timeprof],[Get time profiling of internal functions.]), [with_timeprof=yes])
+AC_ARG_ENABLE(mpi, AC_HELP_STRING([--enable-mpi],[Compile code for MPI support (use mpic++ not g++ compiler).]), [with_mpi=no])
+AC_ARG_ENABLE(timeprof, AC_HELP_STRING([--enable-timeprof],[Get time profiling of internal functions.]), [with_timeprof=no])
 AC_ARG_ENABLE(windows, AC_HELP_STRING([--enable-windows],[Compile code for Windows platform using cygwin]), [MAKE_FOR_WINDOWS=yes], [MAKE_FOR_WINDOWS=no])
 
 
@@ -54,12 +54,12 @@ AC_ARG_ENABLE(windows, AC_HELP_STRING([--enable-windows],[Compile code for Windo
 # Compiler config
 #
 # Set variables
-  AC_PROG_CXX([g++-4.3.3 g++-4.3.1 g++-4.3.0 g++-4 g++ gcc cl KCC CC cxx cc++ xlC aCC c++])
-  AC_PROG_CC([gcc-4.3.3 gcc-4.3.1 gcc-4.3.0 gcc-4 gcc])
-  AC_PROG_F77([gfortran-4.3.3 gfortran-4 gfortran g++-4.3.1 g++-4.3.0])
-  #AC_PROG_CXX([g++ gcc cl KCC CC cxx cc++ xlC aCC c++])
-  #AC_PROG_CC([gcc])
-  #AC_PROG_F77([gfortran])
+  #AC_PROG_CXX([g++-4.3.3 g++-4.3.1 g++-4.3.0 g++-4 g++ gcc cl KCC CC cxx cc++ xlC aCC c++])
+  #AC_PROG_CC([gcc-4.3.3 gcc-4.3.1 gcc-4.3.0 gcc-4 gcc])
+  #AC_PROG_F77([gfortran-4.3.3 gfortran-4 gfortran g++-4.3.1 g++-4.3.0])
+  AC_PROG_CXX([g++ gcc cl KCC CC cxx cc++ xlC aCC c++])
+  AC_PROG_CC([gcc])
+  AC_PROG_F77([gfortran])
 echo
 
 
@@ -248,6 +248,8 @@ if test -z "$OPENMP_CFLAGS" ; then
     AC_MSG_NOTICE([Install a compiler with OpenMP support for better performance.])
   fi
 fi
+
+LT_INIT
 
 # Process makefiles
 AC_CONFIG_FILES([Makefile doc/Makefile src/lr/Makefile src/library/Makefile src/Makefile])

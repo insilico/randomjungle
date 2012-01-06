@@ -1,9 +1,9 @@
 This is randomjungle.info, produced by makeinfo version 4.13 from
 randomjungle.texi.
 
-This manual (22 January 2011) is for Random Jungle (RJ) version
-1.2.362, a package containing an implementation of the Random Forests
-(TM) method.
+This manual (29 December 2011) is for Random Jungle (RJ) version 1.2.,
+a package containing an implementation of the Random Forests (TM)
+method.
 
    Copyright (C) 2008-2011 Daniel F. Schwarz.
 
@@ -25,9 +25,9 @@ File: randomjungle.info,  Node: Top,  Next: Preliminaries,  Up: (dir)
 Random Jungle
 *************
 
-This manual (22 January 2011) is for Random Jungle (RJ) version
-1.2.362, a package containing an implementation of the Random Forests
-(TM) method.
+This manual (29 December 2011) is for Random Jungle (RJ) version 1.2.,
+a package containing an implementation of the Random Forests (TM)
+method.
 
    Copyright (C) 2008-2011 Daniel F. Schwarz.
 
@@ -44,12 +44,12 @@ has additional builtin functions.
 
    `Random Jungle' is written by Daniel F. Schwarz and few volunteers.
 All names and email addresses can be found in the files
-`randomjungle-1.2.362/AUTHORS' and `randomjungle-1.2.362/THANKS' from
-the Random Jungle distribution.
+`randomjungle-1.2./AUTHORS' and `randomjungle-1.2./THANKS' from the
+Random Jungle distribution.
 
-   This is release 1.2.362.  It is considered unstable:  future
-releases are meant to add new features, fix bugs, increase speed, or
-improve documentation.  However...
+   This is release 1.2..  It is considered unstable:  future releases
+are meant to add new features, fix bugs, increase speed, or improve
+documentation.  However...
 
 * Menu:
 
@@ -235,7 +235,7 @@ document!  Some of the examples assume that your current directory is
 located where you unpacked the installation, so if you plan on
 following along, you may find it helpful to do this now:
 
-     $ cd randomjungle-1.2.362
+     $ cd randomjungle-1.2.
 
 
 File: randomjungle.info,  Node: Install,  Next: Invoking Random Jungle,  Prev: Preliminaries,  Up: Top
@@ -698,7 +698,7 @@ File: randomjungle.info,  Node: Standard files,  Next: Log file,  Up: Output dat
 
 If `rjungle' is executed it will always produce three files.  See *note
 Log file::, *note Confusion file:: and *note Importance file::.  You
-can run an example in your `randomjungle-1.2.362' directory and see it.
+can run an example in your `randomjungle-1.2.' directory and see it.
      $ cd tests
      $ rjungle -f test.ped -p -v -M2
      $ ls
@@ -816,7 +816,7 @@ File: randomjungle.info,  Node: Runtime error codes,  Up: Error codes
 =======================
 
 Error code description can be found in
-`randomjungle-1.2.362/src/library/error_codes.txt' or
+`randomjungle-1.2./src/library/error_codes.txt' or
 `http://www.randomjungle.com/tags/newest/error_codes.txt'.
 
 
@@ -826,7 +826,7 @@ File: randomjungle.info,  Node: Application,  Next: Copying This Package,  Prev:
 ********************
 
 This chapter describes various examples of working with `rjungle'.  You
-can run the examples in your `randomjungle-1.2.362'/tests directory.
+can run the examples in your `randomjungle-1.2.'/tests directory.
 
 * Menu:
 
@@ -1015,8 +1015,8 @@ Execute `RJ' as follows:
 
 File: randomjungle.info,  Node: Copying This Package,  Next: Copying This Manual,  Prev: Application,  Up: Top
 
-Anhang A How to make copies of the overall Random Jungle package
-****************************************************************
+Appendix A How to make copies of the overall Random Jungle package
+******************************************************************
 
 This appendix covers the license for copying the source code of the
 overall Random Jungle package.  This manual is under a different set of
@@ -1752,12 +1752,12 @@ please read `http://www.gnu.org/philosophy/why-not-lgpl.html'.
 
 File: randomjungle.info,  Node: Copying This Manual,  Next: Indices,  Prev: Copying This Package,  Up: Top
 
-Anhang B How to make copies of this manual
-******************************************
+Appendix B How to make copies of this manual
+********************************************
 
 This appendix covers the license for copying this manual.  Note that
 some of the longer examples in this manual are also distributed in the
-directory `Random Jungle-1.2.362/examples/', where a more permissive
+directory `Random Jungle-1.2./examples/', where a more permissive
 license is in effect when copying just the examples.
 
 * Menu:
@@ -2199,8 +2199,8 @@ permit their use in free software.
 
 File: randomjungle.info,  Node: Indices,  Prev: Copying This Manual,  Up: Top
 
-Anhang C Indices of concepts and macros
-***************************************
+Appendix C Indices of concepts and macros
+*****************************************
 
 * Menu:
 
@@ -2220,7 +2220,7 @@ macro is introduced the first time.
  [index ]
 * Menu:
 
-* =:                                     Operation modes.      (line 71)
+* =:                                     Operation modes.      (line 87)
 * cells:                                 Input the whole data. (line 15)
 * names:                                 Input the whole data. (line 10)
 
@@ -2290,44 +2290,44 @@ C.2 Index for many concepts
 
 
 Tag Table:
-Node: Top852
-Node: Preliminaries4220
-Node: Intro4955
-Node: History5659
-Node: Bugs6315
-Node: Manual7572
-Node: Install9041
-Node: Compiling and installing9283
-Node: Invoking Random Jungle10319
-Node: Operation modes12290
-Node: Input data21611
-Node: Input the whole data21955
-Node: Restricted analysis23558
-Node: Output data23875
-Node: Standard files24355
-Node: Log file24845
-Node: Confusion file25093
-Node: Prediction file25737
-Node: Importance file26058
-Node: Verbose file26758
-Node: Error codes28210
-Node: Runtime error codes28428
-Node: Application28703
-Node: Example129457
-Node: Example229845
-Node: Example330084
-Node: Example430988
-Node: Example531552
-Node: Example632099
-Node: Example732449
-Node: Example833189
-Node: Example933745
-Node: Copying This Package34618
-Node: GNU General Public License35151
-Node: Copying This Manual72742
-Node: GNU Free Documentation License73280
-Node: Indices95686
-Node: Macro index95977
-Node: Concept index96545
+Node: Top850
+Node: Preliminaries4207
+Node: Intro4942
+Node: History5646
+Node: Bugs6302
+Node: Manual7559
+Node: Install9025
+Node: Compiling and installing9267
+Node: Invoking Random Jungle10303
+Node: Operation modes12274
+Node: Input data21595
+Node: Input the whole data21939
+Node: Restricted analysis23542
+Node: Output data23859
+Node: Standard files24339
+Node: Log file24826
+Node: Confusion file25074
+Node: Prediction file25718
+Node: Importance file26039
+Node: Verbose file26739
+Node: Error codes28191
+Node: Runtime error codes28409
+Node: Application28681
+Node: Example129432
+Node: Example229820
+Node: Example330059
+Node: Example430963
+Node: Example531527
+Node: Example632074
+Node: Example732424
+Node: Example833164
+Node: Example933720
+Node: Copying This Package34593
+Node: GNU General Public License35130
+Node: Copying This Manual72721
+Node: GNU Free Documentation License73260
+Node: Indices95666
+Node: Macro index95961
+Node: Concept index96529
 
 End Tag Table
