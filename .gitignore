@@ -1,9 +1,10 @@
 ec
 *.o
 .dep.inc
-config.*
+config.log
+config.in
+config.status
 Makefile
-Makefile.in
 .deps
 stamp-h1
 autom4te.cache
