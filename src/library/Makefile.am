@@ -57,14 +57,17 @@ LotusTermClassAtom.cpp TimeProf.cpp TMClassAtom.cpp Tree.cpp mvt.cpp mvtfortran.
 #librjunglesparse_a_SOURCES=$(librjunglesparse_a_HEADERS) $(mysources)
 
 # shared library build with libtool
-lib_LTLIBRARIES=librjungle-1.2.362.la
-librjungle_1_2_362_la_SOURCES = $(mysources)
+lib_LTLIBRARIES=librjungle.la
+librjungle_la_SOURCES = $(mysources)
 
 # compiler flags
-librjungle_1_2_362_la_CPPFLAGS=$(mycppflags)
+librjungle_la_CPPFLAGS=$(mycppflags)
+
+# linker flags
+librjungle_la_LDFLAGS = -release 1.2.362
 
 # the list of header files that belong to the library
-librjungle_1_2_362_la_HEADERS=$(myheaders)
+librjungle_la_HEADERS=$(myheaders)
 
 # where to install the headers on the system
-librjungle_1_2_362_ladir=$(includedir)/rjungle
+librjungle_ladir=$(includedir)/rjungle

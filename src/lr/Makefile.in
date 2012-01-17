@@ -36,7 +36,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = src/lr
-DIST_COMMON = $(liblr_1_2_362_la_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(liblr_la_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/boost.m4 \
@@ -72,22 +72,21 @@ am__nobase_list = $(am__nobase_strip_setup); \
 am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(liblr_1_2_362_ladir)"
+am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liblr_ladir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-liblr_1_2_362_la_LIBADD =
-am__objects_1 = liblr_1_2_362_la-amar.lo liblr_1_2_362_la-ambs.lo \
-	liblr_1_2_362_la-amdym.lo liblr_1_2_362_la-amdyv_array.lo \
-	liblr_1_2_362_la-amdyv.lo liblr_1_2_362_la-amiv.lo \
-	liblr_1_2_362_la-am_string_array.lo \
-	liblr_1_2_362_la-am_string.lo liblr_1_2_362_la-amvpv.lo \
-	liblr_1_2_362_la-file.lo liblr_1_2_362_la-genarray.lo \
-	liblr_1_2_362_la-lin_conjgrad.lo liblr_1_2_362_la-lr.lo \
-	liblr_1_2_362_la-lrutils.lo liblr_1_2_362_la-pfload.lo \
-	liblr_1_2_362_la-prec.lo liblr_1_2_362_la-precs.lo \
-	liblr_1_2_362_la-score.lo liblr_1_2_362_la-spardat.lo
-am_liblr_1_2_362_la_OBJECTS = $(am__objects_1)
-liblr_1_2_362_la_OBJECTS = $(am_liblr_1_2_362_la_OBJECTS)
+liblr_la_LIBADD =
+am__objects_1 = liblr_la-amar.lo liblr_la-ambs.lo liblr_la-amdym.lo \
+	liblr_la-amdyv_array.lo liblr_la-amdyv.lo liblr_la-amiv.lo \
+	liblr_la-am_string_array.lo liblr_la-am_string.lo \
+	liblr_la-amvpv.lo liblr_la-file.lo liblr_la-genarray.lo \
+	liblr_la-lin_conjgrad.lo liblr_la-lr.lo liblr_la-lrutils.lo \
+	liblr_la-pfload.lo liblr_la-prec.lo liblr_la-precs.lo \
+	liblr_la-score.lo liblr_la-spardat.lo
+am_liblr_la_OBJECTS = $(am__objects_1)
+liblr_la_OBJECTS = $(am_liblr_la_OBJECTS)
+liblr_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(liblr_la_LDFLAGS) \
+	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__depfiles_maybe = depfiles
@@ -101,9 +100,9 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(liblr_1_2_362_la_SOURCES)
-DIST_SOURCES = $(liblr_1_2_362_la_SOURCES)
-HEADERS = $(liblr_1_2_362_la_HEADERS)
+SOURCES = $(liblr_la_SOURCES)
+DIST_SOURCES = $(liblr_la_SOURCES)
+HEADERS = $(liblr_la_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -250,10 +249,14 @@ LIBNAME = @LIBNAME@
 myincludes = -I$(top_srcdir)/src -I$(top_srcdir)
 mycppflags = $(OPENMP_CFLAGS) $(myincludes)
 myheaders = \
-amar.h ambs.h amdym.h amdyv_array.h amdyv.h amiv.h amma.h am_string_array.h am_string.h amvpv.h file.h genarray.h lin_conjgrad.h lr.h lrutils.h pfload.h prec.h precs.h score.h spardat.h standard.h
+amar.h ambs.h amdym.h amdyv_array.h amdyv.h amiv.h amma.h am_string_array.h \
+am_string.h amvpv.h file.h genarray.h lin_conjgrad.h lr.h lrutils.h pfload.h \
+prec.h precs.h score.h spardat.h standard.h
 
 mysources = \
-amar.c ambs.c amdym.c amdyv_array.c amdyv.c amiv.c am_string_array.c am_string.c amvpv.c file.c genarray.c lin_conjgrad.c lr.c lrutils.c pfload.c prec.c precs.c score.c spardat.c
+amar.c ambs.c amdym.c amdyv_array.c amdyv.c amiv.c am_string_array.c \
+am_string.c amvpv.c file.c genarray.c lin_conjgrad.c lr.c lrutils.c \
+pfload.c prec.c precs.c score.c spardat.c
 
 
 # normal library build
@@ -270,19 +273,22 @@ amar.c ambs.c amdym.c amdyv_array.c amdyv.c amiv.c am_string_array.c am_string.c
 
 # the sources to add to the library and to add to the distribution
 #liblr_a_SOURCES=$(liblr_a_HEADERS) $(mysources)
-lib_LTLIBRARIES = liblr-1.2.362.la
+lib_LTLIBRARIES = liblr.la
 
 # compiler flags
-liblr_1_2_362_la_CPPFLAGS = $(mycppflags)
+liblr_la_CPPFLAGS = $(mycppflags)
+
+# linker flags
+liblr_la_LDFLAGS = -release 1.2.362
 
 # the list of header files that belong to the library
-liblr_1_2_362_la_HEADERS = $(myheaders)
+liblr_la_HEADERS = $(myheaders)
 
 # where to install the headers on the system
-liblr_1_2_362_ladir = $(includedir)/rjungle
+liblr_ladir = $(includedir)/rjungle
 
 # the sources to add to the library and to add to the distribution
-liblr_1_2_362_la_SOURCES = $(liblr_a_HEADERS) $(mysources)
+liblr_la_SOURCES = $(liblr_a_HEADERS) $(mysources)
 all: all-am
 
 .SUFFIXES:
@@ -348,8 +354,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-liblr-1.2.362.la: $(liblr_1_2_362_la_OBJECTS) $(liblr_1_2_362_la_DEPENDENCIES) 
-	$(LINK) -rpath $(libdir) $(liblr_1_2_362_la_OBJECTS) $(liblr_1_2_362_la_LIBADD) $(LIBS)
+liblr.la: $(liblr_la_OBJECTS) $(liblr_la_DEPENDENCIES) 
+	$(liblr_la_LINK) -rpath $(libdir) $(liblr_la_OBJECTS) $(liblr_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -357,25 +363,25 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-am_string.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-am_string_array.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-amar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-ambs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-amdym.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-amdyv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-amdyv_array.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-amiv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-amvpv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-file.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-genarray.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-lin_conjgrad.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-lr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-lrutils.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-pfload.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-prec.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-precs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-score.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_1_2_362_la-spardat.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-am_string.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-am_string_array.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-amar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-ambs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-amdym.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-amdyv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-amdyv_array.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-amiv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-amvpv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-file.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-genarray.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-lin_conjgrad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-lr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-lrutils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-pfload.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-prec.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-precs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-score.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblr_la-spardat.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -398,164 +404,164 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-liblr_1_2_362_la-amar.lo: amar.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-amar.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-amar.Tpo -c -o liblr_1_2_362_la-amar.lo `test -f 'amar.c' || echo '$(srcdir)/'`amar.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-amar.Tpo $(DEPDIR)/liblr_1_2_362_la-amar.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amar.c' object='liblr_1_2_362_la-amar.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-amar.lo: amar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-amar.lo -MD -MP -MF $(DEPDIR)/liblr_la-amar.Tpo -c -o liblr_la-amar.lo `test -f 'amar.c' || echo '$(srcdir)/'`amar.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-amar.Tpo $(DEPDIR)/liblr_la-amar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amar.c' object='liblr_la-amar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-amar.lo `test -f 'amar.c' || echo '$(srcdir)/'`amar.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-amar.lo `test -f 'amar.c' || echo '$(srcdir)/'`amar.c
 
-liblr_1_2_362_la-ambs.lo: ambs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-ambs.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-ambs.Tpo -c -o liblr_1_2_362_la-ambs.lo `test -f 'ambs.c' || echo '$(srcdir)/'`ambs.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-ambs.Tpo $(DEPDIR)/liblr_1_2_362_la-ambs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ambs.c' object='liblr_1_2_362_la-ambs.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-ambs.lo: ambs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-ambs.lo -MD -MP -MF $(DEPDIR)/liblr_la-ambs.Tpo -c -o liblr_la-ambs.lo `test -f 'ambs.c' || echo '$(srcdir)/'`ambs.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-ambs.Tpo $(DEPDIR)/liblr_la-ambs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ambs.c' object='liblr_la-ambs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-ambs.lo `test -f 'ambs.c' || echo '$(srcdir)/'`ambs.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-ambs.lo `test -f 'ambs.c' || echo '$(srcdir)/'`ambs.c
 
-liblr_1_2_362_la-amdym.lo: amdym.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-amdym.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-amdym.Tpo -c -o liblr_1_2_362_la-amdym.lo `test -f 'amdym.c' || echo '$(srcdir)/'`amdym.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-amdym.Tpo $(DEPDIR)/liblr_1_2_362_la-amdym.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amdym.c' object='liblr_1_2_362_la-amdym.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-amdym.lo: amdym.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-amdym.lo -MD -MP -MF $(DEPDIR)/liblr_la-amdym.Tpo -c -o liblr_la-amdym.lo `test -f 'amdym.c' || echo '$(srcdir)/'`amdym.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-amdym.Tpo $(DEPDIR)/liblr_la-amdym.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amdym.c' object='liblr_la-amdym.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-amdym.lo `test -f 'amdym.c' || echo '$(srcdir)/'`amdym.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-amdym.lo `test -f 'amdym.c' || echo '$(srcdir)/'`amdym.c
 
-liblr_1_2_362_la-amdyv_array.lo: amdyv_array.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-amdyv_array.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-amdyv_array.Tpo -c -o liblr_1_2_362_la-amdyv_array.lo `test -f 'amdyv_array.c' || echo '$(srcdir)/'`amdyv_array.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-amdyv_array.Tpo $(DEPDIR)/liblr_1_2_362_la-amdyv_array.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amdyv_array.c' object='liblr_1_2_362_la-amdyv_array.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-amdyv_array.lo: amdyv_array.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-amdyv_array.lo -MD -MP -MF $(DEPDIR)/liblr_la-amdyv_array.Tpo -c -o liblr_la-amdyv_array.lo `test -f 'amdyv_array.c' || echo '$(srcdir)/'`amdyv_array.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-amdyv_array.Tpo $(DEPDIR)/liblr_la-amdyv_array.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amdyv_array.c' object='liblr_la-amdyv_array.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-amdyv_array.lo `test -f 'amdyv_array.c' || echo '$(srcdir)/'`amdyv_array.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-amdyv_array.lo `test -f 'amdyv_array.c' || echo '$(srcdir)/'`amdyv_array.c
 
-liblr_1_2_362_la-amdyv.lo: amdyv.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-amdyv.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-amdyv.Tpo -c -o liblr_1_2_362_la-amdyv.lo `test -f 'amdyv.c' || echo '$(srcdir)/'`amdyv.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-amdyv.Tpo $(DEPDIR)/liblr_1_2_362_la-amdyv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amdyv.c' object='liblr_1_2_362_la-amdyv.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-amdyv.lo: amdyv.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-amdyv.lo -MD -MP -MF $(DEPDIR)/liblr_la-amdyv.Tpo -c -o liblr_la-amdyv.lo `test -f 'amdyv.c' || echo '$(srcdir)/'`amdyv.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-amdyv.Tpo $(DEPDIR)/liblr_la-amdyv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amdyv.c' object='liblr_la-amdyv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-amdyv.lo `test -f 'amdyv.c' || echo '$(srcdir)/'`amdyv.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-amdyv.lo `test -f 'amdyv.c' || echo '$(srcdir)/'`amdyv.c
 
-liblr_1_2_362_la-amiv.lo: amiv.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-amiv.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-amiv.Tpo -c -o liblr_1_2_362_la-amiv.lo `test -f 'amiv.c' || echo '$(srcdir)/'`amiv.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-amiv.Tpo $(DEPDIR)/liblr_1_2_362_la-amiv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amiv.c' object='liblr_1_2_362_la-amiv.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-amiv.lo: amiv.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-amiv.lo -MD -MP -MF $(DEPDIR)/liblr_la-amiv.Tpo -c -o liblr_la-amiv.lo `test -f 'amiv.c' || echo '$(srcdir)/'`amiv.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-amiv.Tpo $(DEPDIR)/liblr_la-amiv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amiv.c' object='liblr_la-amiv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-amiv.lo `test -f 'amiv.c' || echo '$(srcdir)/'`amiv.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-amiv.lo `test -f 'amiv.c' || echo '$(srcdir)/'`amiv.c
 
-liblr_1_2_362_la-am_string_array.lo: am_string_array.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-am_string_array.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-am_string_array.Tpo -c -o liblr_1_2_362_la-am_string_array.lo `test -f 'am_string_array.c' || echo '$(srcdir)/'`am_string_array.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-am_string_array.Tpo $(DEPDIR)/liblr_1_2_362_la-am_string_array.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='am_string_array.c' object='liblr_1_2_362_la-am_string_array.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-am_string_array.lo: am_string_array.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-am_string_array.lo -MD -MP -MF $(DEPDIR)/liblr_la-am_string_array.Tpo -c -o liblr_la-am_string_array.lo `test -f 'am_string_array.c' || echo '$(srcdir)/'`am_string_array.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-am_string_array.Tpo $(DEPDIR)/liblr_la-am_string_array.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='am_string_array.c' object='liblr_la-am_string_array.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-am_string_array.lo `test -f 'am_string_array.c' || echo '$(srcdir)/'`am_string_array.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-am_string_array.lo `test -f 'am_string_array.c' || echo '$(srcdir)/'`am_string_array.c
 
-liblr_1_2_362_la-am_string.lo: am_string.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-am_string.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-am_string.Tpo -c -o liblr_1_2_362_la-am_string.lo `test -f 'am_string.c' || echo '$(srcdir)/'`am_string.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-am_string.Tpo $(DEPDIR)/liblr_1_2_362_la-am_string.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='am_string.c' object='liblr_1_2_362_la-am_string.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-am_string.lo: am_string.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-am_string.lo -MD -MP -MF $(DEPDIR)/liblr_la-am_string.Tpo -c -o liblr_la-am_string.lo `test -f 'am_string.c' || echo '$(srcdir)/'`am_string.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-am_string.Tpo $(DEPDIR)/liblr_la-am_string.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='am_string.c' object='liblr_la-am_string.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-am_string.lo `test -f 'am_string.c' || echo '$(srcdir)/'`am_string.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-am_string.lo `test -f 'am_string.c' || echo '$(srcdir)/'`am_string.c
 
-liblr_1_2_362_la-amvpv.lo: amvpv.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-amvpv.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-amvpv.Tpo -c -o liblr_1_2_362_la-amvpv.lo `test -f 'amvpv.c' || echo '$(srcdir)/'`amvpv.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-amvpv.Tpo $(DEPDIR)/liblr_1_2_362_la-amvpv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amvpv.c' object='liblr_1_2_362_la-amvpv.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-amvpv.lo: amvpv.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-amvpv.lo -MD -MP -MF $(DEPDIR)/liblr_la-amvpv.Tpo -c -o liblr_la-amvpv.lo `test -f 'amvpv.c' || echo '$(srcdir)/'`amvpv.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-amvpv.Tpo $(DEPDIR)/liblr_la-amvpv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='amvpv.c' object='liblr_la-amvpv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-amvpv.lo `test -f 'amvpv.c' || echo '$(srcdir)/'`amvpv.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-amvpv.lo `test -f 'amvpv.c' || echo '$(srcdir)/'`amvpv.c
 
-liblr_1_2_362_la-file.lo: file.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-file.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-file.Tpo -c -o liblr_1_2_362_la-file.lo `test -f 'file.c' || echo '$(srcdir)/'`file.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-file.Tpo $(DEPDIR)/liblr_1_2_362_la-file.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='file.c' object='liblr_1_2_362_la-file.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-file.lo: file.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-file.lo -MD -MP -MF $(DEPDIR)/liblr_la-file.Tpo -c -o liblr_la-file.lo `test -f 'file.c' || echo '$(srcdir)/'`file.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-file.Tpo $(DEPDIR)/liblr_la-file.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='file.c' object='liblr_la-file.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-file.lo `test -f 'file.c' || echo '$(srcdir)/'`file.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-file.lo `test -f 'file.c' || echo '$(srcdir)/'`file.c
 
-liblr_1_2_362_la-genarray.lo: genarray.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-genarray.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-genarray.Tpo -c -o liblr_1_2_362_la-genarray.lo `test -f 'genarray.c' || echo '$(srcdir)/'`genarray.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-genarray.Tpo $(DEPDIR)/liblr_1_2_362_la-genarray.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='genarray.c' object='liblr_1_2_362_la-genarray.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-genarray.lo: genarray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-genarray.lo -MD -MP -MF $(DEPDIR)/liblr_la-genarray.Tpo -c -o liblr_la-genarray.lo `test -f 'genarray.c' || echo '$(srcdir)/'`genarray.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-genarray.Tpo $(DEPDIR)/liblr_la-genarray.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='genarray.c' object='liblr_la-genarray.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-genarray.lo `test -f 'genarray.c' || echo '$(srcdir)/'`genarray.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-genarray.lo `test -f 'genarray.c' || echo '$(srcdir)/'`genarray.c
 
-liblr_1_2_362_la-lin_conjgrad.lo: lin_conjgrad.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-lin_conjgrad.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-lin_conjgrad.Tpo -c -o liblr_1_2_362_la-lin_conjgrad.lo `test -f 'lin_conjgrad.c' || echo '$(srcdir)/'`lin_conjgrad.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-lin_conjgrad.Tpo $(DEPDIR)/liblr_1_2_362_la-lin_conjgrad.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lin_conjgrad.c' object='liblr_1_2_362_la-lin_conjgrad.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-lin_conjgrad.lo: lin_conjgrad.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-lin_conjgrad.lo -MD -MP -MF $(DEPDIR)/liblr_la-lin_conjgrad.Tpo -c -o liblr_la-lin_conjgrad.lo `test -f 'lin_conjgrad.c' || echo '$(srcdir)/'`lin_conjgrad.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-lin_conjgrad.Tpo $(DEPDIR)/liblr_la-lin_conjgrad.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lin_conjgrad.c' object='liblr_la-lin_conjgrad.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-lin_conjgrad.lo `test -f 'lin_conjgrad.c' || echo '$(srcdir)/'`lin_conjgrad.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-lin_conjgrad.lo `test -f 'lin_conjgrad.c' || echo '$(srcdir)/'`lin_conjgrad.c
 
-liblr_1_2_362_la-lr.lo: lr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-lr.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-lr.Tpo -c -o liblr_1_2_362_la-lr.lo `test -f 'lr.c' || echo '$(srcdir)/'`lr.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-lr.Tpo $(DEPDIR)/liblr_1_2_362_la-lr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lr.c' object='liblr_1_2_362_la-lr.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-lr.lo: lr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-lr.lo -MD -MP -MF $(DEPDIR)/liblr_la-lr.Tpo -c -o liblr_la-lr.lo `test -f 'lr.c' || echo '$(srcdir)/'`lr.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-lr.Tpo $(DEPDIR)/liblr_la-lr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lr.c' object='liblr_la-lr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-lr.lo `test -f 'lr.c' || echo '$(srcdir)/'`lr.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-lr.lo `test -f 'lr.c' || echo '$(srcdir)/'`lr.c
 
-liblr_1_2_362_la-lrutils.lo: lrutils.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-lrutils.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-lrutils.Tpo -c -o liblr_1_2_362_la-lrutils.lo `test -f 'lrutils.c' || echo '$(srcdir)/'`lrutils.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-lrutils.Tpo $(DEPDIR)/liblr_1_2_362_la-lrutils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lrutils.c' object='liblr_1_2_362_la-lrutils.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-lrutils.lo: lrutils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-lrutils.lo -MD -MP -MF $(DEPDIR)/liblr_la-lrutils.Tpo -c -o liblr_la-lrutils.lo `test -f 'lrutils.c' || echo '$(srcdir)/'`lrutils.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-lrutils.Tpo $(DEPDIR)/liblr_la-lrutils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lrutils.c' object='liblr_la-lrutils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-lrutils.lo `test -f 'lrutils.c' || echo '$(srcdir)/'`lrutils.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-lrutils.lo `test -f 'lrutils.c' || echo '$(srcdir)/'`lrutils.c
 
-liblr_1_2_362_la-pfload.lo: pfload.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-pfload.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-pfload.Tpo -c -o liblr_1_2_362_la-pfload.lo `test -f 'pfload.c' || echo '$(srcdir)/'`pfload.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-pfload.Tpo $(DEPDIR)/liblr_1_2_362_la-pfload.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pfload.c' object='liblr_1_2_362_la-pfload.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-pfload.lo: pfload.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-pfload.lo -MD -MP -MF $(DEPDIR)/liblr_la-pfload.Tpo -c -o liblr_la-pfload.lo `test -f 'pfload.c' || echo '$(srcdir)/'`pfload.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-pfload.Tpo $(DEPDIR)/liblr_la-pfload.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pfload.c' object='liblr_la-pfload.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-pfload.lo `test -f 'pfload.c' || echo '$(srcdir)/'`pfload.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-pfload.lo `test -f 'pfload.c' || echo '$(srcdir)/'`pfload.c
 
-liblr_1_2_362_la-prec.lo: prec.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-prec.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-prec.Tpo -c -o liblr_1_2_362_la-prec.lo `test -f 'prec.c' || echo '$(srcdir)/'`prec.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-prec.Tpo $(DEPDIR)/liblr_1_2_362_la-prec.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='prec.c' object='liblr_1_2_362_la-prec.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-prec.lo: prec.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-prec.lo -MD -MP -MF $(DEPDIR)/liblr_la-prec.Tpo -c -o liblr_la-prec.lo `test -f 'prec.c' || echo '$(srcdir)/'`prec.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-prec.Tpo $(DEPDIR)/liblr_la-prec.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='prec.c' object='liblr_la-prec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-prec.lo `test -f 'prec.c' || echo '$(srcdir)/'`prec.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-prec.lo `test -f 'prec.c' || echo '$(srcdir)/'`prec.c
 
-liblr_1_2_362_la-precs.lo: precs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-precs.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-precs.Tpo -c -o liblr_1_2_362_la-precs.lo `test -f 'precs.c' || echo '$(srcdir)/'`precs.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-precs.Tpo $(DEPDIR)/liblr_1_2_362_la-precs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='precs.c' object='liblr_1_2_362_la-precs.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-precs.lo: precs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-precs.lo -MD -MP -MF $(DEPDIR)/liblr_la-precs.Tpo -c -o liblr_la-precs.lo `test -f 'precs.c' || echo '$(srcdir)/'`precs.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-precs.Tpo $(DEPDIR)/liblr_la-precs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='precs.c' object='liblr_la-precs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-precs.lo `test -f 'precs.c' || echo '$(srcdir)/'`precs.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-precs.lo `test -f 'precs.c' || echo '$(srcdir)/'`precs.c
 
-liblr_1_2_362_la-score.lo: score.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-score.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-score.Tpo -c -o liblr_1_2_362_la-score.lo `test -f 'score.c' || echo '$(srcdir)/'`score.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-score.Tpo $(DEPDIR)/liblr_1_2_362_la-score.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='score.c' object='liblr_1_2_362_la-score.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-score.lo: score.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-score.lo -MD -MP -MF $(DEPDIR)/liblr_la-score.Tpo -c -o liblr_la-score.lo `test -f 'score.c' || echo '$(srcdir)/'`score.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-score.Tpo $(DEPDIR)/liblr_la-score.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='score.c' object='liblr_la-score.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-score.lo `test -f 'score.c' || echo '$(srcdir)/'`score.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-score.lo `test -f 'score.c' || echo '$(srcdir)/'`score.c
 
-liblr_1_2_362_la-spardat.lo: spardat.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_1_2_362_la-spardat.lo -MD -MP -MF $(DEPDIR)/liblr_1_2_362_la-spardat.Tpo -c -o liblr_1_2_362_la-spardat.lo `test -f 'spardat.c' || echo '$(srcdir)/'`spardat.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_1_2_362_la-spardat.Tpo $(DEPDIR)/liblr_1_2_362_la-spardat.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='spardat.c' object='liblr_1_2_362_la-spardat.lo' libtool=yes @AMDEPBACKSLASH@
+liblr_la-spardat.lo: spardat.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT liblr_la-spardat.lo -MD -MP -MF $(DEPDIR)/liblr_la-spardat.Tpo -c -o liblr_la-spardat.lo `test -f 'spardat.c' || echo '$(srcdir)/'`spardat.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/liblr_la-spardat.Tpo $(DEPDIR)/liblr_la-spardat.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='spardat.c' object='liblr_la-spardat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_1_2_362_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_1_2_362_la-spardat.lo `test -f 'spardat.c' || echo '$(srcdir)/'`spardat.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(liblr_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o liblr_la-spardat.lo `test -f 'spardat.c' || echo '$(srcdir)/'`spardat.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-liblr_1_2_362_laHEADERS: $(liblr_1_2_362_la_HEADERS)
+install-liblr_laHEADERS: $(liblr_la_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(liblr_1_2_362_ladir)" || $(MKDIR_P) "$(DESTDIR)$(liblr_1_2_362_ladir)"
-	@list='$(liblr_1_2_362_la_HEADERS)'; test -n "$(liblr_1_2_362_ladir)" || list=; \
+	test -z "$(liblr_ladir)" || $(MKDIR_P) "$(DESTDIR)$(liblr_ladir)"
+	@list='$(liblr_la_HEADERS)'; test -n "$(liblr_ladir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(liblr_1_2_362_ladir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(liblr_1_2_362_ladir)" || exit $$?; \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(liblr_ladir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(liblr_ladir)" || exit $$?; \
 	done
 
-uninstall-liblr_1_2_362_laHEADERS:
+uninstall-liblr_laHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(liblr_1_2_362_la_HEADERS)'; test -n "$(liblr_1_2_362_ladir)" || list=; \
+	@list='$(liblr_la_HEADERS)'; test -n "$(liblr_ladir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(liblr_1_2_362_ladir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(liblr_1_2_362_ladir)" && rm -f $$files
+	echo " ( cd '$(DESTDIR)$(liblr_ladir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(liblr_ladir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -643,7 +649,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liblr_1_2_362_ladir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liblr_ladir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -694,7 +700,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-liblr_1_2_362_laHEADERS
+install-data-am: install-liblr_laHEADERS
 
 install-dvi: install-dvi-am
 
@@ -740,8 +746,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-liblr_1_2_362_laHEADERS
+uninstall-am: uninstall-libLTLIBRARIES uninstall-liblr_laHEADERS
 
 .MAKE: install-am install-strip
 
@@ -752,14 +757,13 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-liblr_1_2_362_laHEADERS \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-liblr_1_2_362_laHEADERS
+	install-libLTLIBRARIES install-liblr_laHEADERS install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES uninstall-liblr_laHEADERS
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

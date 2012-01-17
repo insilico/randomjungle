@@ -5,10 +5,14 @@ myincludes = -I$(top_srcdir)/src -I$(top_srcdir)
 mycppflags=$(OPENMP_CFLAGS) $(myincludes)
 
 myheaders= \
-amar.h ambs.h amdym.h amdyv_array.h amdyv.h amiv.h amma.h am_string_array.h am_string.h amvpv.h file.h genarray.h lin_conjgrad.h lr.h lrutils.h pfload.h prec.h precs.h score.h spardat.h standard.h
+amar.h ambs.h amdym.h amdyv_array.h amdyv.h amiv.h amma.h am_string_array.h \
+am_string.h amvpv.h file.h genarray.h lin_conjgrad.h lr.h lrutils.h pfload.h \
+prec.h precs.h score.h spardat.h standard.h
 
 mysources= \
-amar.c ambs.c amdym.c amdyv_array.c amdyv.c amiv.c am_string_array.c am_string.c amvpv.c file.c genarray.c lin_conjgrad.c lr.c lrutils.c pfload.c prec.c precs.c score.c spardat.c
+amar.c ambs.c amdym.c amdyv_array.c amdyv.c amiv.c am_string_array.c \
+am_string.c amvpv.c file.c genarray.c lin_conjgrad.c lr.c lrutils.c \
+pfload.c prec.c precs.c score.c spardat.c
 
 # normal library build
 #lib_LIBRARIES=liblr.a
@@ -25,16 +29,19 @@ amar.c ambs.c amdym.c amdyv_array.c amdyv.c amiv.c am_string_array.c am_string.c
 # the sources to add to the library and to add to the distribution
 #liblr_a_SOURCES=$(liblr_a_HEADERS) $(mysources)
 
-lib_LTLIBRARIES=liblr-1.2.362.la
+lib_LTLIBRARIES=liblr.la
 
 # compiler flags
-liblr_1_2_362_la_CPPFLAGS=$(mycppflags)
+liblr_la_CPPFLAGS=$(mycppflags)
+
+# linker flags
+liblr_la_LDFLAGS = -release 1.2.362
 
 # the list of header files that belong to the library
-liblr_1_2_362_la_HEADERS=$(myheaders)
+liblr_la_HEADERS=$(myheaders)
 
 # where to install the headers on the system
-liblr_1_2_362_ladir=$(includedir)/rjungle
+liblr_ladir=$(includedir)/rjungle
 
 # the sources to add to the library and to add to the distribution
-liblr_1_2_362_la_SOURCES=$(liblr_a_HEADERS) $(mysources)
+liblr_la_SOURCES=$(liblr_a_HEADERS) $(mysources)

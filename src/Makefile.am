@@ -20,7 +20,7 @@ rjungle_SOURCES = main.cpp
 
 # the local library needed to build the program (currently not installed
 # in the lib directory, therefor relative path where it will be built!)
-rjungle_LDADD = $(OPENMP_CFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjungle-1.2.362 -llr-1.2.362 @FLIBS@
+rjungle_LDADD = $(OPENMP_CFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjungle -llr @FLIBS@
 #rjunglesparse_LDADD = $(OPENMP_CFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjunglesparse -llr @FLIBS@
 
 ### STATIC
