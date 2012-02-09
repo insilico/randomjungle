@@ -58,19 +58,17 @@ class TimeProf {
 		std::map<std::string, Profiler> profilers;
 };
 
+// Disable Timeprof once and for all - bcw - 2/7/12
+#if 0
 #ifdef HAVE_TIMEPROF
-
 extern TimeProf timeProf;
-
 #define TIMEPROF_START(x) timeProf.start(x);
 #define TIMEPROF_STOP(x) timeProf.stop(x);
-
-#else /*HAVE_TIMEPROF*/
+#endif
+#endif /*HAVE_TIMEPROF*/
 
 // define empty macros
 #define TIMEPROF_START(x) ;
 #define TIMEPROF_STOP(x) ; 
-
-#endif /*HAVE_TIMEPROF*/
 
 #endif /*TIMEPROF_H_*/

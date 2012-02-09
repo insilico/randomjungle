@@ -519,8 +519,8 @@ public:
    */
   static void autoBuild(RJunglePar par) {
     std::vector<uli_t> *colMaskVec = NULL;
-    time_t start, end;
-    clock_t startgrow, endgrow;
+    time_t start=0, end=0;
+    clock_t startgrow=0, endgrow=0;
 
     // validate par
     if ((par.backSel > 0) && (par.tunemtry != 0))

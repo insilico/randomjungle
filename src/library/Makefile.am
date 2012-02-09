@@ -2,8 +2,9 @@ LIBS=@LIBS@
 LIBDIR=@LIBDIR@
 LIBNAME=@LIBNAME@
 myincludes = -I$(top_srcdir)/src -I$(top_srcdir) -I$(top_srcdir)/src/lr
-mycppflags=$(OPENMP_CFLAGS) $(BOOST_CPPFLAGS) $(myincludes)
+mycppflags=$(OPENMP_CXXFLAGS) $(BOOST_CPPFLAGS) $(myincludes)
 AM_FFLAGS=$(myincludes) -x f77-cpp-input
+LIBS += $(OPENMP_LDFLAGS)
 
 myheaders= \
 BitMatrix.h BuildinGenerators.h ClassAtom.h CmpldTree.h CmplFct.h \

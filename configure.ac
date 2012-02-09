@@ -19,7 +19,6 @@
 ###
 
 AC_PREREQ([2.60])
-AC_CONFIG_MACRO_DIR([m4])
 ## We want to get the version number from file 'VERSION' (rather than
 ## specifying the version info in 'configure.ac'.  Hence, we need a bit
 ## of M4 magic.  Note that M4 esyscmd has a trailing newline because the
@@ -29,10 +28,13 @@ m4_define([RJ_VERSION],
                        [\([0-9.]*\)\(\w\|\W\)*],
                        [\1]))
 AC_INIT(randomjungle, RJ_VERSION)
-AC_CONFIG_SRCDIR(src/library/librjungle.cpp)
+
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
-AM_INIT_AUTOMAKE
+AC_CONFIG_SRCDIR(src/library/librjungle.cpp)
 AC_CONFIG_HEADERS([config.h])
+
+AM_INIT_AUTOMAKE
 
 AC_SUBST(SRCDIR, src)
 AC_SUBST(LIBDIR, library)
@@ -40,77 +42,32 @@ AC_SUBST(LIBLRDIR, lr)
 AC_SUBST(MPISEP)
 AC_SUBST(MPIINFIX)
 
+AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
-
 
 # add parameter(s)
 AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug],[Compile code for debugging.]), [debug_rjungle=yes])
-AC_ARG_ENABLE(mpi, AC_HELP_STRING([--enable-mpi],[Compile code for MPI support (use mpic++ not g++ compiler).]), [with_mpi=no])
-AC_ARG_ENABLE(timeprof, AC_HELP_STRING([--enable-timeprof],[Get time profiling of internal functions.]), [with_timeprof=no])
-AC_ARG_ENABLE(windows, AC_HELP_STRING([--enable-windows],[Compile code for Windows platform using cygwin]), [MAKE_FOR_WINDOWS=yes], [MAKE_FOR_WINDOWS=no])
 
-
-# 
-# Compiler config
-#
-# Set variables
-  #AC_PROG_CXX([g++-4.3.3 g++-4.3.1 g++-4.3.0 g++-4 g++ gcc cl KCC CC cxx cc++ xlC aCC c++])
-  #AC_PROG_CC([gcc-4.3.3 gcc-4.3.1 gcc-4.3.0 gcc-4 gcc])
-  #AC_PROG_F77([gfortran-4.3.3 gfortran-4 gfortran g++-4.3.1 g++-4.3.0])
-  AC_PROG_CXX([g++ gcc cl KCC CC cxx cc++ xlC aCC c++])
-  AC_PROG_CC([gcc])
-  AC_PROG_F77([gfortran])
-echo
-
-
-#
-# MPI config
-#
-if test "$with_mpi" != 'yes' ; then
-#  AC_PROG_CXX([g++-4.3.3 g++-4.3.1 g++-4.3.0 g++-4 g++ gcc cl KCC CC cxx cc++ xlC aCC c++])
-#  AC_PROG_CC([gcc-4.3.3 gcc-4.3.1 gcc-4.3.0 gcc-4 gcc])
-#  AC_PROG_F77([gfortran-4.3.3 gfortran-4 g++-4.3.1 g++-4.3.0 gfortran])
-  echo ""
+# Set debug variables
+if test "$debug_rjungle" != 'yes' ; then
+    CXXFLAGS="-O2 -g0 -Wall $CXXFLAGS"
 else
-  #AC_DEFINE([HAVE_MPI])
-  AC_DEFINE([HAVE_MPI], 1, [Compiling using MPI])
-
-  #AC_PROG_CXX([mpicxx mpic++])
-  #AC_PROG_CC([mpicc])
-  #AC_PROG_F77([mpif77])
-  
-  CXX="mpic++"
-  CC="mpicc"
-  F77="mpif77"
-
-	LIBS="-libverbs $LIBS"
-	MPISEP="-"
-	MPIINFIX="mpi"
+    CXXFLAGS="-O0 -gdwarf-2 -Wall $CXXFLAGS -D__DEBUG__"
 fi
 
-
-#
-# Time profiling
-#
-if test "$with_timeprof" == 'yes' ; then
-  AC_DEFINE([HAVE_TIMEPROF], 1, [Time profiling])
-fi
-
-
-#
-# Windows config
-#
-if test "$MAKE_FOR_WINDOWS" == 'yes' ; then
-  CXXFLAGS="$CXXFLAGS -D__WINDOWS__"
-fi
-AC_SUBST([MAKE_FOR_WINDOWS])
-
+# add OpenMP flags here
+CXXFLAGS="$CXXFLAGS -D__NOPLUGIN__"
+LIBS="-lm -lgfortran $LIBS"
+LIBDIR="$LIBDIR -L/usr/local/lib"
 
 # Checks for programs.
+AC_PROG_CXX
 AC_F77_LIBRARY_LDFLAGS
 AC_PROG_CPP
 AC_PROG_LN_S
 AC_PROG_LIBTOOL
+
+LT_INIT
 
 # Checks for header files.
 AC_CHECK_HEADERS([math.h stdlib.h string.h sys/time.h getopt.h])
@@ -119,47 +76,36 @@ AC_CHECK_HEADERS([math.h stdlib.h string.h sys/time.h getopt.h])
 AC_HEADER_STDBOOL
 AC_C_INLINE
 AC_TYPE_SIZE_T
-
-# Check pointer size
+AC_FUNC_ERROR_AT_LINE
+AC_FUNC_STRTOD
+AC_CHECK_FUNCS([round pow sqrt floor memset], [], AC_MSG_ERROR([required function missing]))
 AC_CHECK_SIZEOF(void *)
-
-
-# Check for openmp
-AC_OPENMP
-
-# Checks for libraries.
-# zlib.m4
-CHECK_ZLIB
-# boost.m4
-BOOST_REQUIRE
-BOOST_FIND_HEADER(boost/dynamic_bitset.hpp, AC_MSG_ERROR([could not find required headers of Boost c++. Install boost c++ libraries.],))
-# gsl.m4
-AX_PATH_GSL(1.8,, AC_MSG_ERROR([could not find required version of GSL]))
-# libxml2.m4
-AM_PATH_XML2(2.0.0,, AC_MSG_ERROR([could not find required version of XML2]))
 
 # makeinfo
 AC_CHECK_PROG([MAKEINFO], [makeinfo], [makeinfo], AC_MSG_ERROR([could not find required program: makeinfo]))
 
-# Set variables
-if test "$debug_rjungle" != 'yes' ; then
-    CXXFLAGS="-O2 -g0 -Wall $CXXFLAGS"
-else
-    CXXFLAGS="-O0 -gdwarf-2 -Wall $CXXFLAGS -D__DEBUG__"
-fi
-CXXFLAGS="$CXXFLAGS -D__NOPLUGIN__"
-LIBS="-lgsl -lm -lgslcblas -lxml2 -lpthread -lgfortran $LIBS"
+AC_MSG_NOTICE([--------------------------------------------------])
 
+# OpenMP
+CXXFLAGS="$CXXFLAGS -fopenmp"
+LDFLAGS="$LDFLAGS -fopenmp -lgomp -lpthread"
 
-# Checks for library functions.
-AC_FUNC_ERROR_AT_LINE
-AC_FUNC_STRTOD
-AC_CHECK_FUNCS([round pow sqrt floor memset], [], AC_MSG_ERROR([required function missing]))
+# Checks for libraries.
+# zlib.m4
+CHECK_ZLIB
 
+# boost.m4
+BOOST_REQUIRE
+BOOST_FIND_HEADER(boost/dynamic_bitset.hpp, AC_MSG_ERROR([could not find required headers of Boost c++. Install boost c++ libraries.],))
 
-#
+# gsl.m4
+AX_PATH_GSL(1.8,, AC_MSG_ERROR([could not find required version of GSL]))
+LDFLAGS="$LDFLAGS -lgsl -lgslcblas"
+
+# libxml2.m4
+AM_PATH_XML2(2.0.0,, AC_MSG_ERROR([could not find required version of XML2]))
+
 # Check for XML delegate library.
-#
 AC_ARG_WITH([xml],
     [AC_HELP_STRING([--without-xml],
                     [disable XML support])],
@@ -240,16 +186,6 @@ AC_CHECK_FUNC([getopt_long], AC_DEFINE([HAVE_GETOPT_LONG]),)
 
 
 AC_MSG_NOTICE([--------------------------------------------------])
-
-if test -z "$OPENMP_CFLAGS" ; then
-  if test "$with_mpi" != 'yes' ; then
-    AC_MSG_WARN([Could not detect OpenMP support.])
-    AC_MSG_NOTICE([If you have got multiple CPUs in your computer the speed of the program will drastically increase with OpenMP.])
-    AC_MSG_NOTICE([Install a compiler with OpenMP support for better performance.])
-  fi
-fi
-
-LT_INIT
 
 # Process makefiles
 AC_CONFIG_FILES([Makefile doc/Makefile src/lr/Makefile src/library/Makefile src/Makefile])

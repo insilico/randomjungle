@@ -1,8 +1,8 @@
-This is randomjungle.info, produced by makeinfo version 4.13 from
+This is randomjungle.info, produced by makeinfo version 4.8 from
 randomjungle.texi.
 
-This manual (29 December 2011) is for Random Jungle (RJ) version 1.2.,
-a package containing an implementation of the Random Forests (TM)
+   This manual (6 February 2012) is for Random Jungle (RJ) version
+1.2., a package containing an implementation of the Random Forests (TM)
 method.
 
    Copyright (C) 2008-2011 Daniel F. Schwarz.
@@ -25,9 +25,8 @@ File: randomjungle.info,  Node: Top,  Next: Preliminaries,  Up: (dir)
 Random Jungle
 *************
 
-This manual (29 December 2011) is for Random Jungle (RJ) version 1.2.,
-a package containing an implementation of the Random Forests (TM)
-method.
+This manual (6 February 2012) is for Random Jungle (RJ) version 1.2., a
+package containing an implementation of the Random Forests (TM) method.
 
    Copyright (C) 2008-2011 Daniel F. Schwarz.
 
@@ -696,8 +695,8 @@ File: randomjungle.info,  Node: Standard files,  Next: Log file,  Up: Output dat
 5.1 The standard output files
 =============================
 
-If `rjungle' is executed it will always produce three files.  See *note
-Log file::, *note Confusion file:: and *note Importance file::.  You
+If `rjungle' is executed it will always produce three files.  See *Note
+Log file::, *Note Confusion file:: and *Note Importance file::.  You
 can run an example in your `randomjungle-1.2.' directory and see it.
      $ cd tests
      $ rjungle -f test.ped -p -v -M2
@@ -2290,7 +2289,7 @@ C.2 Index for many concepts
 
 
 Tag Table:
-Node: Top850
+Node: Top851
 Node: Preliminaries4207
 Node: Intro4942
 Node: History5646

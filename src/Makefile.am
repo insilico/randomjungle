@@ -2,7 +2,7 @@ LIBS=@LIBS@
 LIBDIR=@LIBDIR@
 EXECNAME=@EXECNAME@
 LIBNAME=@LIBNAME@
-mycppflags=$(OPENMP_CFLAGS) $(BOOST_CPPFLAGS) -D__NOPLUGIN__
+mycppflags=$(OPENMP_CXXFLAGS) $(BOOST_CPPFLAGS) -D__NOPLUGIN__
 
 ### SHARED
 # the program to build
@@ -20,7 +20,7 @@ rjungle_SOURCES = main.cpp
 
 # the local library needed to build the program (currently not installed
 # in the lib directory, therefor relative path where it will be built!)
-rjungle_LDADD = $(OPENMP_CFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjungle -llr @FLIBS@
+rjungle_LDADD = $(OPENMP_LDFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjungle -llr @FLIBS@
 #rjunglesparse_LDADD = $(OPENMP_CFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjunglesparse -llr @FLIBS@
 
 ### STATIC

@@ -31,9 +31,6 @@
 /* Define to 1 if you have the `memset' function. */
 #define HAVE_MEMSET 1
 
-/* Compiling using MPI */
-/* #undef HAVE_MPI */
-
 /* Define to 1 if you have the `pow' function. */
 #define HAVE_POW 1
 
@@ -67,9 +64,6 @@
 /* Define to 1 if you have the <sys/types.h> header file. */
 #define HAVE_SYS_TYPES_H 1
 
-/* Time profiling */
-/* #undef HAVE_TIMEPROF */
-
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
 
@@ -94,9 +88,6 @@
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "randomjungle"
-
-/* Define to the home page for this package. */
-#define PACKAGE_URL ""
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "1.2."

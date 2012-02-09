@@ -36,7 +36,7 @@
 #define STANDARD_H
 
 #ifndef UNIX_TTY_PLATFORM
-#ifdef WIN32
+#ifdef _WIN32
 /* Precisely one of the following constants must be #defined and the
    others must not be #defined. */
 /* #define UNIX_TTY_PLATFORM */
@@ -125,22 +125,15 @@
 
 
 #ifdef UNIX_PLATFORM
-#ifndef _SYS_TIMES_H
-#include <sys/times.h>
-#ifndef _SYS_TIMES_H
-#define _SYS_TIMES_H 1
-#endif /* sys_times_h sanity check */
-#endif /* _SYS_TIMES_H */
-#endif /* UNIX_PLATFORM */
-
-#ifdef UNIX_PLATFORM
 #include <sys/time.h>
 #include <signal.h>
 #include <unistd.h>
 #endif
 
 #ifdef PC_PLATFORM
+#ifdef _MSC_VER
 #include <winsock.h>
+#endif
 #endif
 
 #ifndef STDIO_H
