@@ -448,7 +448,7 @@ if (id_omp != 0) *io.outVerbose << "+" << ntree_omp;
 			//} // at the points slaves return when performing mpi
 
 			// finalize
-
+#ifdef HAVE_MPI
 			// combining mpi slave data
 			if (par.mpi == 1) {
 				// permutation importance
@@ -471,6 +471,7 @@ if (id_omp != 0) *io.outVerbose << "+" << ntree_omp;
 				if (doVarProxi(par))
 					varProxi.combineMpi();
 			}
+#endif
 
 			// permutation importance
 #ifdef HAVE_MPI

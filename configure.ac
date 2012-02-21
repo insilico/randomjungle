@@ -50,12 +50,15 @@ AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug],[Compile code for debugging
 
 # Set debug variables
 if test "$debug_rjungle" != 'yes' ; then
+    CPPFLAGS="-O2 -g0 -Wall $CPPFLAGS"
     CXXFLAGS="-O2 -g0 -Wall $CXXFLAGS"
 else
+    CPPFLAGS="-O0 -gdwarf-2 -Wall $CPPFLAGS -D__DEBUG__"
     CXXFLAGS="-O0 -gdwarf-2 -Wall $CXXFLAGS -D__DEBUG__"
 fi
 
 # add OpenMP flags here
+CPPFLAGS="$CPPFLAGS -D__NOPLUGIN__"
 CXXFLAGS="$CXXFLAGS -D__NOPLUGIN__"
 LIBS="-lm -lgfortran $LIBS"
 LIBDIR="$LIBDIR -L/usr/local/lib"
@@ -88,7 +91,8 @@ AC_MSG_NOTICE([--------------------------------------------------])
 
 # OpenMP
 CXXFLAGS="$CXXFLAGS -fopenmp"
-LDFLAGS="$LDFLAGS -fopenmp -lgomp -lpthread"
+CPPFLAGS="$CPPFLAGS -fopenmp"
+LDFLAGS="$LDFLAGS -fopenmp -lgomp"
 
 # Checks for libraries.
 # zlib.m4
