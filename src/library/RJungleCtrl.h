@@ -56,6 +56,10 @@ public:
   virtual ~RJungleCtrl() {
   }
 
+  double getOobPredAcc() {
+  	return *binder.pred.acc;
+  }
+
   void setParAndIO(RJunglePar &par_, RJungleIO &io_) {
     binder.par = par_;
     binder.io = io_;

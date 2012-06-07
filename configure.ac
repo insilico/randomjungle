@@ -94,6 +94,9 @@ CXXFLAGS="$CXXFLAGS -fopenmp"
 CPPFLAGS="$CPPFLAGS -fopenmp"
 LDFLAGS="$LDFLAGS -fopenmp -lgomp"
 
+AC_CHECK_LIB(pthread, pthread_create)
+LDFLAGS="$LDFLAGS -lpthread"
+
 # Checks for libraries.
 # zlib.m4
 CHECK_ZLIB

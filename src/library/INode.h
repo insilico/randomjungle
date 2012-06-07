@@ -49,7 +49,8 @@ public:
 	}
 
 	void setClassifier(ClassAtom<T, uli_t > *classifier) {
-		return this->classifier = classifier;
+		this->classifier = classifier;
+		return;
 	}
 
 	virtual T classify(const std::vector<T > &sample) const {

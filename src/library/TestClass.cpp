@@ -3,6 +3,7 @@
  */
 
 #include <vector>
+#include <string>
 
 #include "TestClass.h"
 #include "CondInf.h"
@@ -64,7 +65,7 @@ void TestClass::lr(void) const {
 
 	mk_read_dym_for_csv((char *) "./tests/liblrtest.csv", &factors, &outputs);
 	if (!dyv_is_binary( outputs)) {
-		my_error( "run_train: Error: csv output column is not binary.\n");
+		my_error("run_train: Error: csv output column is not binary.\n");
 	}
 
   /* Train. */
