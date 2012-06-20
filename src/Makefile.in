@@ -52,10 +52,13 @@ binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_rjungle_OBJECTS = main.$(OBJEXT)
 rjungle_OBJECTS = $(am_rjungle_OBJECTS)
-rjungle_DEPENDENCIES =
-am_rjungle_static_OBJECTS = rjungle_static-main.$(OBJEXT)
+am__DEPENDENCIES_1 =
+am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
+rjungle_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1)
+am_rjungle_static_OBJECTS = main.$(OBJEXT)
 rjungle_static_OBJECTS = $(am_rjungle_static_OBJECTS)
-rjungle_static_DEPENDENCIES =
+rjungle_static_DEPENDENCIES = $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_1)
 rjungle_static_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(rjungle_static_LDFLAGS) $(LDFLAGS) -o $@
@@ -218,38 +221,36 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 xml2_config = @xml2_config@
-EXECNAME = @EXECNAME@
 LIBNAME = @LIBNAME@
-mycppflags = $(OPENMP_CXXFLAGS) $(BOOST_CPPFLAGS) -D__NOPLUGIN__
+my_include_paths = -I$(top_srcdir)/src -I$(top_srcdir) -I$(top_srcdir)/src/lr
+AM_CXXFLAGS = $(CXXFLAGS) -I$(my_include_paths) $(BOOST_CPPFLAGS) \
+	-DHAVE__BOOL -D__NOPLUGIN__
+AM_FFLAGS = $(my_include_paths) -x f77-cpp-input
+my_ld_paths = $(LDFLAGS) -L$(top_srcdir)/src/$(LIBDIR) \
+	-L$(top_srcdir)/src/lr -L/usr/local/lib
+my_ld_flags = -lrjungle -llr @FLIBS@ -lgsl -lgslcblas
 
 # compiler flags
-@rjungle_CPPFLAGS = $(mycppflags)
-#rjunglesparse_CPPFLAGS = $(mycppflags) -D__SPARSE_DATA__
+# @rjungle_CPPFLAGS = $(my_include_paths)
 
 # prog's sources
 rjungle_SOURCES = main.cpp
-#rjunglesparse_SOURCES = main.cpp
 
 # the local library needed to build the program (currently not installed
 # in the lib directory, therefor relative path where it will be built!)
-rjungle_LDADD = $(OPENMP_LDFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjungle -llr @FLIBS@
-#rjunglesparse_LDADD = $(OPENMP_CFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjunglesparse -llr @FLIBS@
+rjungle_LDADD = $(my_ld_paths) $(my_ld_flags) 
 
 ### STATIC
 # compiler flags
-rjungle_static_CPPFLAGS = $(mycppflags)
-#rjunglesparse_static_CPPFLAGS = $(mycppflags) -D__SPARSE_DATA__
+# rjungle_static_CPPFLAGS = $(mycppflags)
 
 # prog's sources
 rjungle_static_SOURCES = main.cpp
-#rjunglesparse_static_SOURCES = main.cpp
 
 # the local library needed to build the program (currently not installed
-# in the lib directory, therefor relative path where it will be built!)
-rjungle_static_LDADD = -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjungle -llr @FLIBS@
-#rjunglesparse_static_LDADD = -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjunglesparse -llr @FLIBS@
-rjungle_static_LDFLAGS = -all-static $(OPENMP_CFLAGS)
-#rjunglesparse_static_LDFLAGS = -all-static $(OPENMP_CFLAGS)
+# in the lib directory, therefore relative path where it will be built!)
+rjungle_static_LDADD = $(my_ld_paths) $(my_ld_flags) 
+rjungle_static_LDFLAGS = -all-static
 
 # additional include paths to support the library headers
 INCLUDES = -I$(top_srcdir)/src -I$(top_srcdir)/src/$(LIBDIR) -I$(top_srcdir)/src/lr
@@ -331,7 +332,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rjungle_static-main.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -353,20 +353,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
-
-rjungle_static-main.o: main.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rjungle_static_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rjungle_static-main.o -MD -MP -MF $(DEPDIR)/rjungle_static-main.Tpo -c -o rjungle_static-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/rjungle_static-main.Tpo $(DEPDIR)/rjungle_static-main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='rjungle_static-main.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rjungle_static_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rjungle_static-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
-
-rjungle_static-main.obj: main.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rjungle_static_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rjungle_static-main.obj -MD -MP -MF $(DEPDIR)/rjungle_static-main.Tpo -c -o rjungle_static-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/rjungle_static-main.Tpo $(DEPDIR)/rjungle_static-main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='rjungle_static-main.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(rjungle_static_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rjungle_static-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

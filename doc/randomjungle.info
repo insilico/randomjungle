@@ -2,8 +2,8 @@ This is randomjungle.info, produced by makeinfo version 4.8 from
 randomjungle.texi.
 
    This manual (6 February 2012) is for Random Jungle (RJ) version
-1.2., a package containing an implementation of the Random Forests (TM)
-method.
+1.2.362, a package containing an implementation of the Random Forests
+(TM) method.
 
    Copyright (C) 2008-2011 Daniel F. Schwarz.
 
@@ -25,8 +25,9 @@ File: randomjungle.info,  Node: Top,  Next: Preliminaries,  Up: (dir)
 Random Jungle
 *************
 
-This manual (6 February 2012) is for Random Jungle (RJ) version 1.2., a
-package containing an implementation of the Random Forests (TM) method.
+This manual (6 February 2012) is for Random Jungle (RJ) version
+1.2.362, a package containing an implementation of the Random Forests
+(TM) method.
 
    Copyright (C) 2008-2011 Daniel F. Schwarz.
 
@@ -43,12 +44,12 @@ has additional builtin functions.
 
    `Random Jungle' is written by Daniel F. Schwarz and few volunteers.
 All names and email addresses can be found in the files
-`randomjungle-1.2./AUTHORS' and `randomjungle-1.2./THANKS' from the
-Random Jungle distribution.
+`randomjungle-1.2.362/AUTHORS' and `randomjungle-1.2.362/THANKS' from
+the Random Jungle distribution.
 
-   This is release 1.2..  It is considered unstable:  future releases
-are meant to add new features, fix bugs, increase speed, or improve
-documentation.  However...
+   This is release 1.2.362.  It is considered unstable:  future
+releases are meant to add new features, fix bugs, increase speed, or
+improve documentation.  However...
 
 * Menu:
 
@@ -234,7 +235,7 @@ document!  Some of the examples assume that your current directory is
 located where you unpacked the installation, so if you plan on
 following along, you may find it helpful to do this now:
 
-     $ cd randomjungle-1.2.
+     $ cd randomjungle-1.2.362
 
 
 File: randomjungle.info,  Node: Install,  Next: Invoking Random Jungle,  Prev: Preliminaries,  Up: Top
@@ -697,7 +698,7 @@ File: randomjungle.info,  Node: Standard files,  Next: Log file,  Up: Output dat
 
 If `rjungle' is executed it will always produce three files.  See *Note
 Log file::, *Note Confusion file:: and *Note Importance file::.  You
-can run an example in your `randomjungle-1.2.' directory and see it.
+can run an example in your `randomjungle-1.2.362' directory and see it.
      $ cd tests
      $ rjungle -f test.ped -p -v -M2
      $ ls
@@ -815,7 +816,7 @@ File: randomjungle.info,  Node: Runtime error codes,  Up: Error codes
 =======================
 
 Error code description can be found in
-`randomjungle-1.2./src/library/error_codes.txt' or
+`randomjungle-1.2.362/src/library/error_codes.txt' or
 `http://www.randomjungle.com/tags/newest/error_codes.txt'.
 
 
@@ -825,7 +826,7 @@ File: randomjungle.info,  Node: Application,  Next: Copying This Package,  Prev:
 ********************
 
 This chapter describes various examples of working with `rjungle'.  You
-can run the examples in your `randomjungle-1.2.'/tests directory.
+can run the examples in your `randomjungle-1.2.362'/tests directory.
 
 * Menu:
 
@@ -1756,7 +1757,7 @@ Appendix B How to make copies of this manual
 
 This appendix covers the license for copying this manual.  Note that
 some of the longer examples in this manual are also distributed in the
-directory `Random Jungle-1.2./examples/', where a more permissive
+directory `Random Jungle-1.2.362/examples/', where a more permissive
 license is in effect when copying just the examples.
 
 * Menu:
@@ -2289,44 +2290,44 @@ C.2 Index for many concepts
 
 
 Tag Table:
-Node: Top851
-Node: Preliminaries4207
-Node: Intro4942
-Node: History5646
-Node: Bugs6302
-Node: Manual7559
-Node: Install9025
-Node: Compiling and installing9267
-Node: Invoking Random Jungle10303
-Node: Operation modes12274
-Node: Input data21595
-Node: Input the whole data21939
-Node: Restricted analysis23542
-Node: Output data23859
-Node: Standard files24339
-Node: Log file24826
-Node: Confusion file25074
-Node: Prediction file25718
-Node: Importance file26039
-Node: Verbose file26739
-Node: Error codes28191
-Node: Runtime error codes28409
-Node: Application28681
-Node: Example129432
-Node: Example229820
-Node: Example330059
-Node: Example430963
-Node: Example531527
-Node: Example632074
-Node: Example732424
-Node: Example833164
-Node: Example933720
-Node: Copying This Package34593
-Node: GNU General Public License35130
-Node: Copying This Manual72721
-Node: GNU Free Documentation License73260
-Node: Indices95666
-Node: Macro index95961
-Node: Concept index96529
+Node: Top854
+Node: Preliminaries4222
+Node: Intro4957
+Node: History5661
+Node: Bugs6317
+Node: Manual7574
+Node: Install9043
+Node: Compiling and installing9285
+Node: Invoking Random Jungle10321
+Node: Operation modes12292
+Node: Input data21613
+Node: Input the whole data21957
+Node: Restricted analysis23560
+Node: Output data23877
+Node: Standard files24357
+Node: Log file24847
+Node: Confusion file25095
+Node: Prediction file25739
+Node: Importance file26060
+Node: Verbose file26760
+Node: Error codes28212
+Node: Runtime error codes28430
+Node: Application28705
+Node: Example129459
+Node: Example229847
+Node: Example330086
+Node: Example430990
+Node: Example531554
+Node: Example632101
+Node: Example732451
+Node: Example833191
+Node: Example933747
+Node: Copying This Package34620
+Node: GNU General Public License35157
+Node: Copying This Manual72748
+Node: GNU Free Documentation License73290
+Node: Indices95696
+Node: Macro index95991
+Node: Concept index96559
 
 End Tag Table

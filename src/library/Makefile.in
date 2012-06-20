@@ -59,37 +59,22 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 librjungle_la_LIBADD =
-am__objects_1 = librjungle_la-BitMatrix.lo \
-	librjungle_la-BuildinGenerators.lo librjungle_la-ClassAtom.lo \
-	librjungle_la-CmpldTree.lo librjungle_la-CmplFct.lo \
-	librjungle_la-CondInf.lo librjungle_la-IAM2WayImportance.lo \
-	librjungle_la-IAMClassAtom.lo librjungle_la-Importance.lo \
-	librjungle_la-JTreeTweaks.lo librjungle_la-TImportance.lo \
-	librjungle_la-RJungleTuneMtry.lo \
-	librjungle_la-RJungleOutlier.lo librjungle_la-RJungleProto.lo \
-	librjungle_la-DataFrame.lo librjungle_la-DataTreeSet.lo \
-	librjungle_la-Exception.lo librjungle_la-FittingFct.lo \
-	librjungle_la-RJunglePrediction.lo \
-	librjungle_la-SaveCollector.lo librjungle_la-PermImportance.lo \
-	librjungle_la-Prediction.lo librjungle_la-ioLines.lo \
-	librjungle_la-Generator.lo librjungle_la-gzstream.lo \
-	librjungle_la-Helper.lo librjungle_la-INode.lo \
-	librjungle_la-librjungle.lo librjungle_la-Logistic.lo \
-	librjungle_la-Node.lo librjungle_la-Profiler.lo \
-	librjungle_la-Proximities.lo librjungle_la-RJungleAcc.lo \
-	librjungle_la-RJungleBinder.lo \
-	librjungle_la-RJungleCompiler.lo \
-	librjungle_la-RJungleConfusion.lo librjungle_la-RJungleCtrl.lo \
-	librjungle_la-RJungleFromXML.lo librjungle_la-RJungleGen.lo \
-	librjungle_la-RJungleGrow.lo librjungle_la-RJungleHelper.lo \
-	librjungle_la-RJungleImportance.lo \
-	librjungle_la-RJungleImpute.lo librjungle_la-RJungleIO.lo \
-	librjungle_la-RJunglePar.lo librjungle_la-RJungleProxi.lo \
-	librjungle_la-SClassAtom.lo librjungle_la-T2ClassAtom.lo \
-	librjungle_la-TermClassAtom.lo librjungle_la-TermResult.lo \
-	librjungle_la-TestClass.lo librjungle_la-LotusTermClassAtom.lo \
-	librjungle_la-TimeProf.lo librjungle_la-TMClassAtom.lo \
-	librjungle_la-Tree.lo librjungle_la-mvt.lo mvtfortran.lo
+am__objects_1 = BitMatrix.lo BuildinGenerators.lo ClassAtom.lo \
+	CmpldTree.lo CmplFct.lo CondInf.lo IAM2WayImportance.lo \
+	IAMClassAtom.lo Importance.lo JTreeTweaks.lo TImportance.lo \
+	RJungleTuneMtry.lo RJungleOutlier.lo RJungleProto.lo \
+	DataFrame.lo DataTreeSet.lo Exception.lo FittingFct.lo \
+	RJunglePrediction.lo SaveCollector.lo PermImportance.lo \
+	Prediction.lo ioLines.lo Generator.lo gzstream.lo Helper.lo \
+	INode.lo librjungle.lo Logistic.lo Node.lo Profiler.lo \
+	Proximities.lo RJungleAcc.lo RJungleBinder.lo \
+	RJungleCompiler.lo RJungleConfusion.lo RJungleCtrl.lo \
+	RJungleFromXML.lo RJungleGen.lo RJungleGrow.lo \
+	RJungleHelper.lo RJungleImportance.lo RJungleImpute.lo \
+	RJungleIO.lo RJunglePar.lo RJungleProxi.lo SClassAtom.lo \
+	T2ClassAtom.lo TermClassAtom.lo TermResult.lo TestClass.lo \
+	LotusTermClassAtom.lo TimeProf.lo TMClassAtom.lo Tree.lo \
+	mvt.lo mvtfortran.lo
 am_librjungle_la_OBJECTS = $(am__objects_1)
 librjungle_la_OBJECTS = $(am_librjungle_la_OBJECTS)
 librjungle_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -167,7 +152,7 @@ LDFLAGS = @LDFLAGS@
 LIBDIR = @LIBDIR@
 LIBLRDIR = @LIBLRDIR@
 LIBOBJS = @LIBOBJS@
-LIBS = @LIBS@ $(OPENMP_LDFLAGS)
+LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
@@ -254,9 +239,10 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 xml2_config = @xml2_config@
 LIBNAME = @LIBNAME@
-myincludes = -I$(top_srcdir)/src -I$(top_srcdir) -I$(top_srcdir)/src/lr
-mycppflags = $(OPENMP_CXXFLAGS) $(BOOST_CPPFLAGS) $(myincludes)
-AM_FFLAGS = $(myincludes) -x f77-cpp-input
+my_include_paths = -I$(top_srcdir)/src -I$(top_srcdir) -I$(top_srcdir)/src/lr
+AM_CXXFLAGS = @CXXFLAGS@ -I$(my_include_paths) $(BOOST_CPPFLAGS) \
+	-DHAVE__BOOL -D__NOPLUGIN__
+AM_FFLAGS = $(my_include_paths) -x f77-cpp-input
 myheaders = \
 BitMatrix.h BuildinGenerators.h ClassAtom.h CmpldTree.h CmplFct.h \
 CondInf.h ErrorCodes.h IAM2WayImportance.h IAMClassAtom.h Importance.h JTreeTweaks.h \
@@ -313,10 +299,11 @@ lib_LTLIBRARIES = librjungle.la
 librjungle_la_SOURCES = $(mysources)
 
 # compiler flags
-librjungle_la_CPPFLAGS = $(mycppflags)
+#librjungle_la_CPPFLAGS=$(mycppflags)
+#librjungle_la_CXXFLAGS=$(mycppflags)
 
 # linker flags
-librjungle_la_LDFLAGS = -release 1.2.362
+librjungle_la_LDFLAGS = -release 1.2.362 $(LD_FLAGS)
 
 # the list of header files that belong to the library
 librjungle_la_HEADERS = $(myheaders)
@@ -392,62 +379,62 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-BitMatrix.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-BuildinGenerators.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-ClassAtom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-CmplFct.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-CmpldTree.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-CondInf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-DataFrame.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-DataTreeSet.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Exception.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-FittingFct.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Generator.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Helper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-IAM2WayImportance.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-IAMClassAtom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-INode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Importance.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-JTreeTweaks.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Logistic.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-LotusTermClassAtom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Node.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-PermImportance.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Prediction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Profiler.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Proximities.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleAcc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleBinder.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleCompiler.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleConfusion.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleCtrl.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleFromXML.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleGen.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleGrow.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleHelper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleIO.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleImportance.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleImpute.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleOutlier.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJunglePar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJunglePrediction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleProto.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleProxi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-RJungleTuneMtry.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-SClassAtom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-SaveCollector.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-T2ClassAtom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-TImportance.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-TMClassAtom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-TermClassAtom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-TermResult.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-TestClass.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-TimeProf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-Tree.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-gzstream.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-ioLines.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-librjungle.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle_la-mvt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/BitMatrix.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/BuildinGenerators.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ClassAtom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CmplFct.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CmpldTree.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CondInf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DataFrame.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DataTreeSet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Exception.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FittingFct.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Generator.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Helper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/IAM2WayImportance.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/IAMClassAtom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/INode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Importance.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/JTreeTweaks.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Logistic.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LotusTermClassAtom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Node.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PermImportance.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Prediction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Profiler.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Proximities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleAcc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleBinder.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleCompiler.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleConfusion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleCtrl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleFromXML.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleGen.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleGrow.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleHelper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleIO.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleImportance.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleImpute.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleOutlier.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJunglePar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJunglePrediction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleProto.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleProxi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RJungleTuneMtry.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SClassAtom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SaveCollector.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/T2ClassAtom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TImportance.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TMClassAtom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TermClassAtom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TermResult.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TestClass.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TimeProf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Tree.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gzstream.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ioLines.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librjungle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mvt.Plo@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -469,398 +456,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
-
-librjungle_la-BitMatrix.lo: BitMatrix.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-BitMatrix.lo -MD -MP -MF $(DEPDIR)/librjungle_la-BitMatrix.Tpo -c -o librjungle_la-BitMatrix.lo `test -f 'BitMatrix.cpp' || echo '$(srcdir)/'`BitMatrix.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-BitMatrix.Tpo $(DEPDIR)/librjungle_la-BitMatrix.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='BitMatrix.cpp' object='librjungle_la-BitMatrix.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-BitMatrix.lo `test -f 'BitMatrix.cpp' || echo '$(srcdir)/'`BitMatrix.cpp
-
-librjungle_la-BuildinGenerators.lo: BuildinGenerators.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-BuildinGenerators.lo -MD -MP -MF $(DEPDIR)/librjungle_la-BuildinGenerators.Tpo -c -o librjungle_la-BuildinGenerators.lo `test -f 'BuildinGenerators.cpp' || echo '$(srcdir)/'`BuildinGenerators.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-BuildinGenerators.Tpo $(DEPDIR)/librjungle_la-BuildinGenerators.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='BuildinGenerators.cpp' object='librjungle_la-BuildinGenerators.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-BuildinGenerators.lo `test -f 'BuildinGenerators.cpp' || echo '$(srcdir)/'`BuildinGenerators.cpp
-
-librjungle_la-ClassAtom.lo: ClassAtom.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-ClassAtom.lo -MD -MP -MF $(DEPDIR)/librjungle_la-ClassAtom.Tpo -c -o librjungle_la-ClassAtom.lo `test -f 'ClassAtom.cpp' || echo '$(srcdir)/'`ClassAtom.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-ClassAtom.Tpo $(DEPDIR)/librjungle_la-ClassAtom.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClassAtom.cpp' object='librjungle_la-ClassAtom.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-ClassAtom.lo `test -f 'ClassAtom.cpp' || echo '$(srcdir)/'`ClassAtom.cpp
-
-librjungle_la-CmpldTree.lo: CmpldTree.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-CmpldTree.lo -MD -MP -MF $(DEPDIR)/librjungle_la-CmpldTree.Tpo -c -o librjungle_la-CmpldTree.lo `test -f 'CmpldTree.cpp' || echo '$(srcdir)/'`CmpldTree.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-CmpldTree.Tpo $(DEPDIR)/librjungle_la-CmpldTree.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CmpldTree.cpp' object='librjungle_la-CmpldTree.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-CmpldTree.lo `test -f 'CmpldTree.cpp' || echo '$(srcdir)/'`CmpldTree.cpp
-
-librjungle_la-CmplFct.lo: CmplFct.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-CmplFct.lo -MD -MP -MF $(DEPDIR)/librjungle_la-CmplFct.Tpo -c -o librjungle_la-CmplFct.lo `test -f 'CmplFct.cpp' || echo '$(srcdir)/'`CmplFct.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-CmplFct.Tpo $(DEPDIR)/librjungle_la-CmplFct.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CmplFct.cpp' object='librjungle_la-CmplFct.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-CmplFct.lo `test -f 'CmplFct.cpp' || echo '$(srcdir)/'`CmplFct.cpp
-
-librjungle_la-CondInf.lo: CondInf.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-CondInf.lo -MD -MP -MF $(DEPDIR)/librjungle_la-CondInf.Tpo -c -o librjungle_la-CondInf.lo `test -f 'CondInf.cpp' || echo '$(srcdir)/'`CondInf.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-CondInf.Tpo $(DEPDIR)/librjungle_la-CondInf.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CondInf.cpp' object='librjungle_la-CondInf.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-CondInf.lo `test -f 'CondInf.cpp' || echo '$(srcdir)/'`CondInf.cpp
-
-librjungle_la-IAM2WayImportance.lo: IAM2WayImportance.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-IAM2WayImportance.lo -MD -MP -MF $(DEPDIR)/librjungle_la-IAM2WayImportance.Tpo -c -o librjungle_la-IAM2WayImportance.lo `test -f 'IAM2WayImportance.cpp' || echo '$(srcdir)/'`IAM2WayImportance.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-IAM2WayImportance.Tpo $(DEPDIR)/librjungle_la-IAM2WayImportance.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IAM2WayImportance.cpp' object='librjungle_la-IAM2WayImportance.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-IAM2WayImportance.lo `test -f 'IAM2WayImportance.cpp' || echo '$(srcdir)/'`IAM2WayImportance.cpp
-
-librjungle_la-IAMClassAtom.lo: IAMClassAtom.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-IAMClassAtom.lo -MD -MP -MF $(DEPDIR)/librjungle_la-IAMClassAtom.Tpo -c -o librjungle_la-IAMClassAtom.lo `test -f 'IAMClassAtom.cpp' || echo '$(srcdir)/'`IAMClassAtom.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-IAMClassAtom.Tpo $(DEPDIR)/librjungle_la-IAMClassAtom.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IAMClassAtom.cpp' object='librjungle_la-IAMClassAtom.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-IAMClassAtom.lo `test -f 'IAMClassAtom.cpp' || echo '$(srcdir)/'`IAMClassAtom.cpp
-
-librjungle_la-Importance.lo: Importance.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Importance.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Importance.Tpo -c -o librjungle_la-Importance.lo `test -f 'Importance.cpp' || echo '$(srcdir)/'`Importance.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Importance.Tpo $(DEPDIR)/librjungle_la-Importance.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Importance.cpp' object='librjungle_la-Importance.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Importance.lo `test -f 'Importance.cpp' || echo '$(srcdir)/'`Importance.cpp
-
-librjungle_la-JTreeTweaks.lo: JTreeTweaks.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-JTreeTweaks.lo -MD -MP -MF $(DEPDIR)/librjungle_la-JTreeTweaks.Tpo -c -o librjungle_la-JTreeTweaks.lo `test -f 'JTreeTweaks.cpp' || echo '$(srcdir)/'`JTreeTweaks.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-JTreeTweaks.Tpo $(DEPDIR)/librjungle_la-JTreeTweaks.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='JTreeTweaks.cpp' object='librjungle_la-JTreeTweaks.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-JTreeTweaks.lo `test -f 'JTreeTweaks.cpp' || echo '$(srcdir)/'`JTreeTweaks.cpp
-
-librjungle_la-TImportance.lo: TImportance.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-TImportance.lo -MD -MP -MF $(DEPDIR)/librjungle_la-TImportance.Tpo -c -o librjungle_la-TImportance.lo `test -f 'TImportance.cpp' || echo '$(srcdir)/'`TImportance.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-TImportance.Tpo $(DEPDIR)/librjungle_la-TImportance.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TImportance.cpp' object='librjungle_la-TImportance.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-TImportance.lo `test -f 'TImportance.cpp' || echo '$(srcdir)/'`TImportance.cpp
-
-librjungle_la-RJungleTuneMtry.lo: RJungleTuneMtry.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleTuneMtry.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleTuneMtry.Tpo -c -o librjungle_la-RJungleTuneMtry.lo `test -f 'RJungleTuneMtry.cpp' || echo '$(srcdir)/'`RJungleTuneMtry.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleTuneMtry.Tpo $(DEPDIR)/librjungle_la-RJungleTuneMtry.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleTuneMtry.cpp' object='librjungle_la-RJungleTuneMtry.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleTuneMtry.lo `test -f 'RJungleTuneMtry.cpp' || echo '$(srcdir)/'`RJungleTuneMtry.cpp
-
-librjungle_la-RJungleOutlier.lo: RJungleOutlier.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleOutlier.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleOutlier.Tpo -c -o librjungle_la-RJungleOutlier.lo `test -f 'RJungleOutlier.cpp' || echo '$(srcdir)/'`RJungleOutlier.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleOutlier.Tpo $(DEPDIR)/librjungle_la-RJungleOutlier.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleOutlier.cpp' object='librjungle_la-RJungleOutlier.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleOutlier.lo `test -f 'RJungleOutlier.cpp' || echo '$(srcdir)/'`RJungleOutlier.cpp
-
-librjungle_la-RJungleProto.lo: RJungleProto.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleProto.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleProto.Tpo -c -o librjungle_la-RJungleProto.lo `test -f 'RJungleProto.cpp' || echo '$(srcdir)/'`RJungleProto.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleProto.Tpo $(DEPDIR)/librjungle_la-RJungleProto.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleProto.cpp' object='librjungle_la-RJungleProto.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleProto.lo `test -f 'RJungleProto.cpp' || echo '$(srcdir)/'`RJungleProto.cpp
-
-librjungle_la-DataFrame.lo: DataFrame.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-DataFrame.lo -MD -MP -MF $(DEPDIR)/librjungle_la-DataFrame.Tpo -c -o librjungle_la-DataFrame.lo `test -f 'DataFrame.cpp' || echo '$(srcdir)/'`DataFrame.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-DataFrame.Tpo $(DEPDIR)/librjungle_la-DataFrame.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataFrame.cpp' object='librjungle_la-DataFrame.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-DataFrame.lo `test -f 'DataFrame.cpp' || echo '$(srcdir)/'`DataFrame.cpp
-
-librjungle_la-DataTreeSet.lo: DataTreeSet.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-DataTreeSet.lo -MD -MP -MF $(DEPDIR)/librjungle_la-DataTreeSet.Tpo -c -o librjungle_la-DataTreeSet.lo `test -f 'DataTreeSet.cpp' || echo '$(srcdir)/'`DataTreeSet.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-DataTreeSet.Tpo $(DEPDIR)/librjungle_la-DataTreeSet.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataTreeSet.cpp' object='librjungle_la-DataTreeSet.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-DataTreeSet.lo `test -f 'DataTreeSet.cpp' || echo '$(srcdir)/'`DataTreeSet.cpp
-
-librjungle_la-Exception.lo: Exception.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Exception.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Exception.Tpo -c -o librjungle_la-Exception.lo `test -f 'Exception.cpp' || echo '$(srcdir)/'`Exception.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Exception.Tpo $(DEPDIR)/librjungle_la-Exception.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Exception.cpp' object='librjungle_la-Exception.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Exception.lo `test -f 'Exception.cpp' || echo '$(srcdir)/'`Exception.cpp
-
-librjungle_la-FittingFct.lo: FittingFct.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-FittingFct.lo -MD -MP -MF $(DEPDIR)/librjungle_la-FittingFct.Tpo -c -o librjungle_la-FittingFct.lo `test -f 'FittingFct.cpp' || echo '$(srcdir)/'`FittingFct.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-FittingFct.Tpo $(DEPDIR)/librjungle_la-FittingFct.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FittingFct.cpp' object='librjungle_la-FittingFct.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-FittingFct.lo `test -f 'FittingFct.cpp' || echo '$(srcdir)/'`FittingFct.cpp
-
-librjungle_la-RJunglePrediction.lo: RJunglePrediction.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJunglePrediction.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJunglePrediction.Tpo -c -o librjungle_la-RJunglePrediction.lo `test -f 'RJunglePrediction.cpp' || echo '$(srcdir)/'`RJunglePrediction.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJunglePrediction.Tpo $(DEPDIR)/librjungle_la-RJunglePrediction.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJunglePrediction.cpp' object='librjungle_la-RJunglePrediction.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJunglePrediction.lo `test -f 'RJunglePrediction.cpp' || echo '$(srcdir)/'`RJunglePrediction.cpp
-
-librjungle_la-SaveCollector.lo: SaveCollector.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-SaveCollector.lo -MD -MP -MF $(DEPDIR)/librjungle_la-SaveCollector.Tpo -c -o librjungle_la-SaveCollector.lo `test -f 'SaveCollector.cpp' || echo '$(srcdir)/'`SaveCollector.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-SaveCollector.Tpo $(DEPDIR)/librjungle_la-SaveCollector.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SaveCollector.cpp' object='librjungle_la-SaveCollector.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-SaveCollector.lo `test -f 'SaveCollector.cpp' || echo '$(srcdir)/'`SaveCollector.cpp
-
-librjungle_la-PermImportance.lo: PermImportance.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-PermImportance.lo -MD -MP -MF $(DEPDIR)/librjungle_la-PermImportance.Tpo -c -o librjungle_la-PermImportance.lo `test -f 'PermImportance.cpp' || echo '$(srcdir)/'`PermImportance.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-PermImportance.Tpo $(DEPDIR)/librjungle_la-PermImportance.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PermImportance.cpp' object='librjungle_la-PermImportance.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-PermImportance.lo `test -f 'PermImportance.cpp' || echo '$(srcdir)/'`PermImportance.cpp
-
-librjungle_la-Prediction.lo: Prediction.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Prediction.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Prediction.Tpo -c -o librjungle_la-Prediction.lo `test -f 'Prediction.cpp' || echo '$(srcdir)/'`Prediction.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Prediction.Tpo $(DEPDIR)/librjungle_la-Prediction.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Prediction.cpp' object='librjungle_la-Prediction.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Prediction.lo `test -f 'Prediction.cpp' || echo '$(srcdir)/'`Prediction.cpp
-
-librjungle_la-ioLines.lo: ioLines.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-ioLines.lo -MD -MP -MF $(DEPDIR)/librjungle_la-ioLines.Tpo -c -o librjungle_la-ioLines.lo `test -f 'ioLines.cpp' || echo '$(srcdir)/'`ioLines.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-ioLines.Tpo $(DEPDIR)/librjungle_la-ioLines.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ioLines.cpp' object='librjungle_la-ioLines.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-ioLines.lo `test -f 'ioLines.cpp' || echo '$(srcdir)/'`ioLines.cpp
-
-librjungle_la-Generator.lo: Generator.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Generator.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Generator.Tpo -c -o librjungle_la-Generator.lo `test -f 'Generator.cpp' || echo '$(srcdir)/'`Generator.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Generator.Tpo $(DEPDIR)/librjungle_la-Generator.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Generator.cpp' object='librjungle_la-Generator.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Generator.lo `test -f 'Generator.cpp' || echo '$(srcdir)/'`Generator.cpp
-
-librjungle_la-gzstream.lo: gzstream.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-gzstream.lo -MD -MP -MF $(DEPDIR)/librjungle_la-gzstream.Tpo -c -o librjungle_la-gzstream.lo `test -f 'gzstream.cpp' || echo '$(srcdir)/'`gzstream.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-gzstream.Tpo $(DEPDIR)/librjungle_la-gzstream.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='gzstream.cpp' object='librjungle_la-gzstream.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-gzstream.lo `test -f 'gzstream.cpp' || echo '$(srcdir)/'`gzstream.cpp
-
-librjungle_la-Helper.lo: Helper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Helper.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Helper.Tpo -c -o librjungle_la-Helper.lo `test -f 'Helper.cpp' || echo '$(srcdir)/'`Helper.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Helper.Tpo $(DEPDIR)/librjungle_la-Helper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Helper.cpp' object='librjungle_la-Helper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Helper.lo `test -f 'Helper.cpp' || echo '$(srcdir)/'`Helper.cpp
-
-librjungle_la-INode.lo: INode.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-INode.lo -MD -MP -MF $(DEPDIR)/librjungle_la-INode.Tpo -c -o librjungle_la-INode.lo `test -f 'INode.cpp' || echo '$(srcdir)/'`INode.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-INode.Tpo $(DEPDIR)/librjungle_la-INode.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='INode.cpp' object='librjungle_la-INode.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-INode.lo `test -f 'INode.cpp' || echo '$(srcdir)/'`INode.cpp
-
-librjungle_la-librjungle.lo: librjungle.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-librjungle.lo -MD -MP -MF $(DEPDIR)/librjungle_la-librjungle.Tpo -c -o librjungle_la-librjungle.lo `test -f 'librjungle.cpp' || echo '$(srcdir)/'`librjungle.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-librjungle.Tpo $(DEPDIR)/librjungle_la-librjungle.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='librjungle.cpp' object='librjungle_la-librjungle.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-librjungle.lo `test -f 'librjungle.cpp' || echo '$(srcdir)/'`librjungle.cpp
-
-librjungle_la-Logistic.lo: Logistic.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Logistic.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Logistic.Tpo -c -o librjungle_la-Logistic.lo `test -f 'Logistic.cpp' || echo '$(srcdir)/'`Logistic.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Logistic.Tpo $(DEPDIR)/librjungle_la-Logistic.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Logistic.cpp' object='librjungle_la-Logistic.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Logistic.lo `test -f 'Logistic.cpp' || echo '$(srcdir)/'`Logistic.cpp
-
-librjungle_la-Node.lo: Node.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Node.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Node.Tpo -c -o librjungle_la-Node.lo `test -f 'Node.cpp' || echo '$(srcdir)/'`Node.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Node.Tpo $(DEPDIR)/librjungle_la-Node.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Node.cpp' object='librjungle_la-Node.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Node.lo `test -f 'Node.cpp' || echo '$(srcdir)/'`Node.cpp
-
-librjungle_la-Profiler.lo: Profiler.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Profiler.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Profiler.Tpo -c -o librjungle_la-Profiler.lo `test -f 'Profiler.cpp' || echo '$(srcdir)/'`Profiler.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Profiler.Tpo $(DEPDIR)/librjungle_la-Profiler.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Profiler.cpp' object='librjungle_la-Profiler.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Profiler.lo `test -f 'Profiler.cpp' || echo '$(srcdir)/'`Profiler.cpp
-
-librjungle_la-Proximities.lo: Proximities.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Proximities.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Proximities.Tpo -c -o librjungle_la-Proximities.lo `test -f 'Proximities.cpp' || echo '$(srcdir)/'`Proximities.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Proximities.Tpo $(DEPDIR)/librjungle_la-Proximities.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Proximities.cpp' object='librjungle_la-Proximities.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Proximities.lo `test -f 'Proximities.cpp' || echo '$(srcdir)/'`Proximities.cpp
-
-librjungle_la-RJungleAcc.lo: RJungleAcc.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleAcc.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleAcc.Tpo -c -o librjungle_la-RJungleAcc.lo `test -f 'RJungleAcc.cpp' || echo '$(srcdir)/'`RJungleAcc.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleAcc.Tpo $(DEPDIR)/librjungle_la-RJungleAcc.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleAcc.cpp' object='librjungle_la-RJungleAcc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleAcc.lo `test -f 'RJungleAcc.cpp' || echo '$(srcdir)/'`RJungleAcc.cpp
-
-librjungle_la-RJungleBinder.lo: RJungleBinder.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleBinder.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleBinder.Tpo -c -o librjungle_la-RJungleBinder.lo `test -f 'RJungleBinder.cpp' || echo '$(srcdir)/'`RJungleBinder.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleBinder.Tpo $(DEPDIR)/librjungle_la-RJungleBinder.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleBinder.cpp' object='librjungle_la-RJungleBinder.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleBinder.lo `test -f 'RJungleBinder.cpp' || echo '$(srcdir)/'`RJungleBinder.cpp
-
-librjungle_la-RJungleCompiler.lo: RJungleCompiler.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleCompiler.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleCompiler.Tpo -c -o librjungle_la-RJungleCompiler.lo `test -f 'RJungleCompiler.cpp' || echo '$(srcdir)/'`RJungleCompiler.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleCompiler.Tpo $(DEPDIR)/librjungle_la-RJungleCompiler.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleCompiler.cpp' object='librjungle_la-RJungleCompiler.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleCompiler.lo `test -f 'RJungleCompiler.cpp' || echo '$(srcdir)/'`RJungleCompiler.cpp
-
-librjungle_la-RJungleConfusion.lo: RJungleConfusion.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleConfusion.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleConfusion.Tpo -c -o librjungle_la-RJungleConfusion.lo `test -f 'RJungleConfusion.cpp' || echo '$(srcdir)/'`RJungleConfusion.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleConfusion.Tpo $(DEPDIR)/librjungle_la-RJungleConfusion.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleConfusion.cpp' object='librjungle_la-RJungleConfusion.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleConfusion.lo `test -f 'RJungleConfusion.cpp' || echo '$(srcdir)/'`RJungleConfusion.cpp
-
-librjungle_la-RJungleCtrl.lo: RJungleCtrl.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleCtrl.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleCtrl.Tpo -c -o librjungle_la-RJungleCtrl.lo `test -f 'RJungleCtrl.cpp' || echo '$(srcdir)/'`RJungleCtrl.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleCtrl.Tpo $(DEPDIR)/librjungle_la-RJungleCtrl.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleCtrl.cpp' object='librjungle_la-RJungleCtrl.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleCtrl.lo `test -f 'RJungleCtrl.cpp' || echo '$(srcdir)/'`RJungleCtrl.cpp
-
-librjungle_la-RJungleFromXML.lo: RJungleFromXML.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleFromXML.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleFromXML.Tpo -c -o librjungle_la-RJungleFromXML.lo `test -f 'RJungleFromXML.cpp' || echo '$(srcdir)/'`RJungleFromXML.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleFromXML.Tpo $(DEPDIR)/librjungle_la-RJungleFromXML.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleFromXML.cpp' object='librjungle_la-RJungleFromXML.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleFromXML.lo `test -f 'RJungleFromXML.cpp' || echo '$(srcdir)/'`RJungleFromXML.cpp
-
-librjungle_la-RJungleGen.lo: RJungleGen.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleGen.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleGen.Tpo -c -o librjungle_la-RJungleGen.lo `test -f 'RJungleGen.cpp' || echo '$(srcdir)/'`RJungleGen.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleGen.Tpo $(DEPDIR)/librjungle_la-RJungleGen.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleGen.cpp' object='librjungle_la-RJungleGen.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleGen.lo `test -f 'RJungleGen.cpp' || echo '$(srcdir)/'`RJungleGen.cpp
-
-librjungle_la-RJungleGrow.lo: RJungleGrow.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleGrow.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleGrow.Tpo -c -o librjungle_la-RJungleGrow.lo `test -f 'RJungleGrow.cpp' || echo '$(srcdir)/'`RJungleGrow.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleGrow.Tpo $(DEPDIR)/librjungle_la-RJungleGrow.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleGrow.cpp' object='librjungle_la-RJungleGrow.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleGrow.lo `test -f 'RJungleGrow.cpp' || echo '$(srcdir)/'`RJungleGrow.cpp
-
-librjungle_la-RJungleHelper.lo: RJungleHelper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleHelper.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleHelper.Tpo -c -o librjungle_la-RJungleHelper.lo `test -f 'RJungleHelper.cpp' || echo '$(srcdir)/'`RJungleHelper.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleHelper.Tpo $(DEPDIR)/librjungle_la-RJungleHelper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleHelper.cpp' object='librjungle_la-RJungleHelper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleHelper.lo `test -f 'RJungleHelper.cpp' || echo '$(srcdir)/'`RJungleHelper.cpp
-
-librjungle_la-RJungleImportance.lo: RJungleImportance.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleImportance.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleImportance.Tpo -c -o librjungle_la-RJungleImportance.lo `test -f 'RJungleImportance.cpp' || echo '$(srcdir)/'`RJungleImportance.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleImportance.Tpo $(DEPDIR)/librjungle_la-RJungleImportance.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleImportance.cpp' object='librjungle_la-RJungleImportance.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleImportance.lo `test -f 'RJungleImportance.cpp' || echo '$(srcdir)/'`RJungleImportance.cpp
-
-librjungle_la-RJungleImpute.lo: RJungleImpute.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleImpute.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleImpute.Tpo -c -o librjungle_la-RJungleImpute.lo `test -f 'RJungleImpute.cpp' || echo '$(srcdir)/'`RJungleImpute.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleImpute.Tpo $(DEPDIR)/librjungle_la-RJungleImpute.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleImpute.cpp' object='librjungle_la-RJungleImpute.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleImpute.lo `test -f 'RJungleImpute.cpp' || echo '$(srcdir)/'`RJungleImpute.cpp
-
-librjungle_la-RJungleIO.lo: RJungleIO.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleIO.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleIO.Tpo -c -o librjungle_la-RJungleIO.lo `test -f 'RJungleIO.cpp' || echo '$(srcdir)/'`RJungleIO.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleIO.Tpo $(DEPDIR)/librjungle_la-RJungleIO.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleIO.cpp' object='librjungle_la-RJungleIO.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleIO.lo `test -f 'RJungleIO.cpp' || echo '$(srcdir)/'`RJungleIO.cpp
-
-librjungle_la-RJunglePar.lo: RJunglePar.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJunglePar.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJunglePar.Tpo -c -o librjungle_la-RJunglePar.lo `test -f 'RJunglePar.cpp' || echo '$(srcdir)/'`RJunglePar.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJunglePar.Tpo $(DEPDIR)/librjungle_la-RJunglePar.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJunglePar.cpp' object='librjungle_la-RJunglePar.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJunglePar.lo `test -f 'RJunglePar.cpp' || echo '$(srcdir)/'`RJunglePar.cpp
-
-librjungle_la-RJungleProxi.lo: RJungleProxi.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-RJungleProxi.lo -MD -MP -MF $(DEPDIR)/librjungle_la-RJungleProxi.Tpo -c -o librjungle_la-RJungleProxi.lo `test -f 'RJungleProxi.cpp' || echo '$(srcdir)/'`RJungleProxi.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-RJungleProxi.Tpo $(DEPDIR)/librjungle_la-RJungleProxi.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RJungleProxi.cpp' object='librjungle_la-RJungleProxi.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-RJungleProxi.lo `test -f 'RJungleProxi.cpp' || echo '$(srcdir)/'`RJungleProxi.cpp
-
-librjungle_la-SClassAtom.lo: SClassAtom.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-SClassAtom.lo -MD -MP -MF $(DEPDIR)/librjungle_la-SClassAtom.Tpo -c -o librjungle_la-SClassAtom.lo `test -f 'SClassAtom.cpp' || echo '$(srcdir)/'`SClassAtom.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-SClassAtom.Tpo $(DEPDIR)/librjungle_la-SClassAtom.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SClassAtom.cpp' object='librjungle_la-SClassAtom.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-SClassAtom.lo `test -f 'SClassAtom.cpp' || echo '$(srcdir)/'`SClassAtom.cpp
-
-librjungle_la-T2ClassAtom.lo: T2ClassAtom.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-T2ClassAtom.lo -MD -MP -MF $(DEPDIR)/librjungle_la-T2ClassAtom.Tpo -c -o librjungle_la-T2ClassAtom.lo `test -f 'T2ClassAtom.cpp' || echo '$(srcdir)/'`T2ClassAtom.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-T2ClassAtom.Tpo $(DEPDIR)/librjungle_la-T2ClassAtom.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='T2ClassAtom.cpp' object='librjungle_la-T2ClassAtom.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-T2ClassAtom.lo `test -f 'T2ClassAtom.cpp' || echo '$(srcdir)/'`T2ClassAtom.cpp
-
-librjungle_la-TermClassAtom.lo: TermClassAtom.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-TermClassAtom.lo -MD -MP -MF $(DEPDIR)/librjungle_la-TermClassAtom.Tpo -c -o librjungle_la-TermClassAtom.lo `test -f 'TermClassAtom.cpp' || echo '$(srcdir)/'`TermClassAtom.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-TermClassAtom.Tpo $(DEPDIR)/librjungle_la-TermClassAtom.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TermClassAtom.cpp' object='librjungle_la-TermClassAtom.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-TermClassAtom.lo `test -f 'TermClassAtom.cpp' || echo '$(srcdir)/'`TermClassAtom.cpp
-
-librjungle_la-TermResult.lo: TermResult.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-TermResult.lo -MD -MP -MF $(DEPDIR)/librjungle_la-TermResult.Tpo -c -o librjungle_la-TermResult.lo `test -f 'TermResult.cpp' || echo '$(srcdir)/'`TermResult.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-TermResult.Tpo $(DEPDIR)/librjungle_la-TermResult.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TermResult.cpp' object='librjungle_la-TermResult.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-TermResult.lo `test -f 'TermResult.cpp' || echo '$(srcdir)/'`TermResult.cpp
-
-librjungle_la-TestClass.lo: TestClass.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-TestClass.lo -MD -MP -MF $(DEPDIR)/librjungle_la-TestClass.Tpo -c -o librjungle_la-TestClass.lo `test -f 'TestClass.cpp' || echo '$(srcdir)/'`TestClass.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-TestClass.Tpo $(DEPDIR)/librjungle_la-TestClass.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TestClass.cpp' object='librjungle_la-TestClass.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-TestClass.lo `test -f 'TestClass.cpp' || echo '$(srcdir)/'`TestClass.cpp
-
-librjungle_la-LotusTermClassAtom.lo: LotusTermClassAtom.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-LotusTermClassAtom.lo -MD -MP -MF $(DEPDIR)/librjungle_la-LotusTermClassAtom.Tpo -c -o librjungle_la-LotusTermClassAtom.lo `test -f 'LotusTermClassAtom.cpp' || echo '$(srcdir)/'`LotusTermClassAtom.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-LotusTermClassAtom.Tpo $(DEPDIR)/librjungle_la-LotusTermClassAtom.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='LotusTermClassAtom.cpp' object='librjungle_la-LotusTermClassAtom.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-LotusTermClassAtom.lo `test -f 'LotusTermClassAtom.cpp' || echo '$(srcdir)/'`LotusTermClassAtom.cpp
-
-librjungle_la-TimeProf.lo: TimeProf.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-TimeProf.lo -MD -MP -MF $(DEPDIR)/librjungle_la-TimeProf.Tpo -c -o librjungle_la-TimeProf.lo `test -f 'TimeProf.cpp' || echo '$(srcdir)/'`TimeProf.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-TimeProf.Tpo $(DEPDIR)/librjungle_la-TimeProf.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TimeProf.cpp' object='librjungle_la-TimeProf.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-TimeProf.lo `test -f 'TimeProf.cpp' || echo '$(srcdir)/'`TimeProf.cpp
-
-librjungle_la-TMClassAtom.lo: TMClassAtom.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-TMClassAtom.lo -MD -MP -MF $(DEPDIR)/librjungle_la-TMClassAtom.Tpo -c -o librjungle_la-TMClassAtom.lo `test -f 'TMClassAtom.cpp' || echo '$(srcdir)/'`TMClassAtom.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-TMClassAtom.Tpo $(DEPDIR)/librjungle_la-TMClassAtom.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TMClassAtom.cpp' object='librjungle_la-TMClassAtom.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-TMClassAtom.lo `test -f 'TMClassAtom.cpp' || echo '$(srcdir)/'`TMClassAtom.cpp
-
-librjungle_la-Tree.lo: Tree.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-Tree.lo -MD -MP -MF $(DEPDIR)/librjungle_la-Tree.Tpo -c -o librjungle_la-Tree.lo `test -f 'Tree.cpp' || echo '$(srcdir)/'`Tree.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-Tree.Tpo $(DEPDIR)/librjungle_la-Tree.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Tree.cpp' object='librjungle_la-Tree.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-Tree.lo `test -f 'Tree.cpp' || echo '$(srcdir)/'`Tree.cpp
-
-librjungle_la-mvt.lo: mvt.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT librjungle_la-mvt.lo -MD -MP -MF $(DEPDIR)/librjungle_la-mvt.Tpo -c -o librjungle_la-mvt.lo `test -f 'mvt.cpp' || echo '$(srcdir)/'`mvt.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/librjungle_la-mvt.Tpo $(DEPDIR)/librjungle_la-mvt.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mvt.cpp' object='librjungle_la-mvt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librjungle_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o librjungle_la-mvt.lo `test -f 'mvt.cpp' || echo '$(srcdir)/'`mvt.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

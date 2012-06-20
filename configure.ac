@@ -19,15 +19,8 @@
 ###
 
 AC_PREREQ([2.60])
-## We want to get the version number from file 'VERSION' (rather than
-## specifying the version info in 'configure.ac'.  Hence, we need a bit
-## of M4 magic.  Note that M4 esyscmd has a trailing newline because the
-## shell command output has one, hence the patsubst() trick.
-m4_define([RJ_VERSION],
-          m4_bpatsubst(m4_esyscmd([echo `cat VERSION`.`svnversion| sed "s/[0-9]*\://g" | sed "s/[A-Z]*//g"`]),
-                       [\([0-9.]*\)\(\w\|\W\)*],
-                       [\1]))
-AC_INIT(randomjungle, RJ_VERSION)
+
+AC_INIT(randomjungle, [1.2.362])
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -45,32 +38,23 @@ AC_SUBST(MPIINFIX)
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
 
+# Checks for programs and sets appropriate environment variables.
+AC_PROG_CXX
+AC_PROG_CPP
+AC_PROG_LN_S
+AC_PROG_LIBTOOL
+AC_F77_LIBRARY_LDFLAGS
+
+LT_INIT
+
 # add parameter(s)
 AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug],[Compile code for debugging.]), [debug_rjungle=yes])
 
 # Set debug variables
-if test "$debug_rjungle" != 'yes' ; then
-    CPPFLAGS="-O2 -g0 -Wall $CPPFLAGS"
-    CXXFLAGS="-O2 -g0 -Wall $CXXFLAGS"
-else
+if test "$debug_rjungle" == 'yes' ; then
     CPPFLAGS="-O0 -gdwarf-2 -Wall $CPPFLAGS -D__DEBUG__"
     CXXFLAGS="-O0 -gdwarf-2 -Wall $CXXFLAGS -D__DEBUG__"
 fi
-
-# add OpenMP flags here
-CPPFLAGS="$CPPFLAGS -D__NOPLUGIN__"
-CXXFLAGS="$CXXFLAGS -D__NOPLUGIN__"
-LIBS="-lm -lgfortran $LIBS"
-LIBDIR="$LIBDIR -L/usr/local/lib"
-
-# Checks for programs.
-AC_PROG_CXX
-AC_F77_LIBRARY_LDFLAGS
-AC_PROG_CPP
-AC_PROG_LN_S
-AC_PROG_LIBTOOL
-
-LT_INIT
 
 # Checks for header files.
 AC_CHECK_HEADERS([math.h stdlib.h string.h sys/time.h getopt.h])
@@ -89,11 +73,6 @@ AC_CHECK_PROG([MAKEINFO], [makeinfo], [makeinfo], AC_MSG_ERROR([could not find r
 
 AC_MSG_NOTICE([--------------------------------------------------])
 
-# OpenMP
-CXXFLAGS="$CXXFLAGS -fopenmp"
-CPPFLAGS="$CPPFLAGS -fopenmp"
-LDFLAGS="$LDFLAGS -fopenmp -lgomp"
-
 AC_CHECK_LIB(pthread, pthread_create)
 LDFLAGS="$LDFLAGS -lpthread"
 
@@ -107,7 +86,6 @@ BOOST_FIND_HEADER(boost/dynamic_bitset.hpp, AC_MSG_ERROR([could not find require
 
 # gsl.m4
 AX_PATH_GSL(1.8,, AC_MSG_ERROR([could not find required version of GSL]))
-LDFLAGS="$LDFLAGS -lgsl -lgslcblas"
 
 # libxml2.m4
 AM_PATH_XML2(2.0.0,, AC_MSG_ERROR([could not find required version of XML2]))

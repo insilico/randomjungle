@@ -87,13 +87,13 @@
 #define PACKAGE_NAME "randomjungle"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "randomjungle 1.2."
+#define PACKAGE_STRING "randomjungle 1.2.362"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "randomjungle"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.2."
+#define PACKAGE_VERSION "1.2.362"
 
 /* The size of `void *', as computed by sizeof. */
 #define SIZEOF_VOID_P 8
@@ -102,7 +102,7 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.2."
+#define VERSION "1.2.362"
 
 /* Define if you have XML library */
 #define XML_DELEGATE 1

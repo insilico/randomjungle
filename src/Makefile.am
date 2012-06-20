@@ -1,8 +1,15 @@
-LIBS=@LIBS@
-LIBDIR=@LIBDIR@
-EXECNAME=@EXECNAME@
-LIBNAME=@LIBNAME@
-mycppflags=$(OPENMP_CXXFLAGS) $(BOOST_CPPFLAGS) -D__NOPLUGIN__
+LIBS = @LIBS@
+LIBDIR = @LIBDIR@
+LIBNAME = @LIBNAME@
+my_include_paths = -I$(top_srcdir)/src -I$(top_srcdir) -I$(top_srcdir)/src/lr
+
+AM_CXXFLAGS = $(CXXFLAGS) -I$(my_include_paths) $(BOOST_CPPFLAGS)
+AM_CXXFLAGS += -DHAVE__BOOL  -D__NOPLUGIN__
+AM_FFLAGS=$(my_include_paths) -x f77-cpp-input
+
+my_ld_paths = $(LDFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr
+my_ld_paths += -L/usr/local/lib
+my_ld_flags = -lrjungle -llr @FLIBS@ -lgsl -lgslcblas
 
 ### SHARED
 # the program to build
@@ -12,34 +19,27 @@ mycppflags=$(OPENMP_CXXFLAGS) $(BOOST_CPPFLAGS) -D__NOPLUGIN__
 bin_PROGRAMS = rjungle rjungle_static
 
 # compiler flags
-@rjungle_CPPFLAGS = $(mycppflags)
-#rjunglesparse_CPPFLAGS = $(mycppflags) -D__SPARSE_DATA__
+# @rjungle_CPPFLAGS = $(my_include_paths)
 
 # prog's sources
 rjungle_SOURCES = main.cpp
-#rjunglesparse_SOURCES = main.cpp
 
 # the local library needed to build the program (currently not installed
 # in the lib directory, therefor relative path where it will be built!)
-rjungle_LDADD = $(OPENMP_LDFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjungle -llr @FLIBS@
-#rjunglesparse_LDADD = $(OPENMP_CFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjunglesparse -llr @FLIBS@
+rjungle_LDADD = $(my_ld_paths) $(my_ld_flags) 
 
 ### STATIC
 # compiler flags
-rjungle_static_CPPFLAGS = $(mycppflags)
-#rjunglesparse_static_CPPFLAGS = $(mycppflags) -D__SPARSE_DATA__
+# rjungle_static_CPPFLAGS = $(mycppflags)
 
 # prog's sources
 rjungle_static_SOURCES = main.cpp
-#rjunglesparse_static_SOURCES = main.cpp
 
 # the local library needed to build the program (currently not installed
-# in the lib directory, therefor relative path where it will be built!)
-rjungle_static_LDADD = -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjungle -llr @FLIBS@
-#rjunglesparse_static_LDADD = -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr -lrjunglesparse -llr @FLIBS@
+# in the lib directory, therefore relative path where it will be built!)
+rjungle_static_LDADD = $(my_ld_paths) $(my_ld_flags) 
 
-rjungle_static_LDFLAGS = -all-static $(OPENMP_CFLAGS)
-#rjunglesparse_static_LDFLAGS = -all-static $(OPENMP_CFLAGS)
+rjungle_static_LDFLAGS = -all-static
 
 # additional include paths to support the library headers
 INCLUDES = -I$(top_srcdir)/src -I$(top_srcdir)/src/$(LIBDIR) -I$(top_srcdir)/src/lr

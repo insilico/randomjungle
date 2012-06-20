@@ -1,10 +1,10 @@
-LIBS=@LIBS@
-LIBDIR=@LIBDIR@
-LIBNAME=@LIBNAME@
-myincludes = -I$(top_srcdir)/src -I$(top_srcdir) -I$(top_srcdir)/src/lr
-mycppflags=$(OPENMP_CXXFLAGS) $(BOOST_CPPFLAGS) $(myincludes)
-AM_FFLAGS=$(myincludes) -x f77-cpp-input
-LIBS += $(OPENMP_LDFLAGS)
+LIBS = @LIBS@
+LIBDIR = @LIBDIR@
+LIBNAME = @LIBNAME@
+my_include_paths = -I$(top_srcdir)/src -I$(top_srcdir) -I$(top_srcdir)/src/lr
+AM_CXXFLAGS = @CXXFLAGS@ -I$(my_include_paths) $(BOOST_CPPFLAGS)
+AM_CXXFLAGS += -DHAVE__BOOL  -D__NOPLUGIN__
+AM_FFLAGS=$(my_include_paths) -x f77-cpp-input
 
 myheaders= \
 BitMatrix.h BuildinGenerators.h ClassAtom.h CmpldTree.h CmplFct.h \
@@ -36,7 +36,6 @@ RJungleImpute.cpp RJungleIO.cpp RJunglePar.cpp RJungleProxi.cpp \
 SClassAtom.cpp T2ClassAtom.cpp TermClassAtom.cpp TermResult.cpp TestClass.cpp \
 LotusTermClassAtom.cpp TimeProf.cpp TMClassAtom.cpp Tree.cpp mvt.cpp mvtfortran.f
 
-
 # normal library build
 #lib_LIBRARIES=librjungle.a librjunglesparse.a
 #lib_LIBRARIES=librjungle.a
@@ -62,10 +61,11 @@ lib_LTLIBRARIES=librjungle.la
 librjungle_la_SOURCES = $(mysources)
 
 # compiler flags
-librjungle_la_CPPFLAGS=$(mycppflags)
+#librjungle_la_CPPFLAGS=$(mycppflags)
+#librjungle_la_CXXFLAGS=$(mycppflags)
 
 # linker flags
-librjungle_la_LDFLAGS = -release 1.2.362
+librjungle_la_LDFLAGS = -release 1.2.362 $(LD_FLAGS)
 
 # the list of header files that belong to the library
 librjungle_la_HEADERS=$(myheaders)
