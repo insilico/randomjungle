@@ -58,14 +58,12 @@ fi
 
 # Checks for header files.
 AC_CHECK_HEADERS([math.h stdlib.h string.h sys/time.h getopt.h])
-
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
 AC_C_INLINE
 AC_TYPE_SIZE_T
 AC_FUNC_ERROR_AT_LINE
 AC_FUNC_STRTOD
-AC_CHECK_FUNCS([round pow sqrt floor memset], [], AC_MSG_ERROR([required function missing]))
 AC_CHECK_SIZEOF(void *)
 
 # makeinfo
