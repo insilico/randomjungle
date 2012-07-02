@@ -75,6 +75,10 @@ AC_CHECK_LIB(pthread, pthread_create)
 LDFLAGS="$LDFLAGS -lpthread"
 
 # Checks for libraries.
+
+# Check for openmp
+AC_OPENMP
+
 # zlib.m4
 CHECK_ZLIB
 
