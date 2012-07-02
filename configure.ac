@@ -70,14 +70,15 @@ AC_CHECK_SIZEOF(void *)
 AC_CHECK_PROG([MAKEINFO], [makeinfo], [makeinfo], AC_MSG_ERROR([could not find required program: makeinfo]))
 
 AC_MSG_NOTICE([--------------------------------------------------])
+# Checks for libraries.
+AC_CHECK_LIB([gomp], [GOMP_parallel_loop_dynamic_start],
+    [], AC_MSG_ERROR(test for OpenMP failed))
+LDFLAGS="$LDFLAGS -lgomp"
+CXXFLAGS="-fopenmp $CXXFLAGS"
+CPPFLAGS="-fopenmp $CPPFLAGS"
 
 AC_CHECK_LIB(pthread, pthread_create)
 LDFLAGS="$LDFLAGS -lpthread"
-
-# Checks for libraries.
-
-# Check for openmp
-AC_OPENMP
 
 # zlib.m4
 CHECK_ZLIB

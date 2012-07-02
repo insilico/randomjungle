@@ -649,116 +649,120 @@ m4trace:configure.ac:67: -1- AH_OUTPUT([SIZEOF_VOID_P], [/* The size of `void *\
 m4trace:configure.ac:70: -1- AC_SUBST([MAKEINFO])
 m4trace:configure.ac:70: -1- AC_SUBST_TRACE([MAKEINFO])
 m4trace:configure.ac:70: -1- m4_pattern_allow([^MAKEINFO$])
-m4trace:configure.ac:74: -1- AH_OUTPUT([HAVE_LIBPTHREAD], [/* Define to 1 if you have the `pthread\' library (-lpthread). */
+m4trace:configure.ac:75: -1- AH_OUTPUT([HAVE_LIBGOMP], [/* Define to 1 if you have the `gomp\' library (-lgomp). */
+#undef HAVE_LIBGOMP])
+m4trace:configure.ac:75: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBGOMP])
+m4trace:configure.ac:75: -1- m4_pattern_allow([^HAVE_LIBGOMP$])
+m4trace:configure.ac:80: -1- AH_OUTPUT([HAVE_LIBPTHREAD], [/* Define to 1 if you have the `pthread\' library (-lpthread). */
 #undef HAVE_LIBPTHREAD])
-m4trace:configure.ac:74: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBPTHREAD])
-m4trace:configure.ac:74: -1- m4_pattern_allow([^HAVE_LIBPTHREAD$])
-m4trace:configure.ac:79: -1- _m4_warn([obsolete], [The macro `AC_LANG_SAVE' is obsolete.
+m4trace:configure.ac:80: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBPTHREAD])
+m4trace:configure.ac:80: -1- m4_pattern_allow([^HAVE_LIBPTHREAD$])
+m4trace:configure.ac:84: -1- _m4_warn([obsolete], [The macro `AC_LANG_SAVE' is obsolete.
 You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/lang.m4:170: AC_LANG_SAVE is expanded from...
 m4/zlib.m4:82: CHECK_ZLIB is expanded from...
-configure.ac:79: the top level])
-m4trace:configure.ac:79: -1- _m4_warn([obsolete], [The macro `AC_LANG_C' is obsolete.
+configure.ac:84: the top level])
+m4trace:configure.ac:84: -1- _m4_warn([obsolete], [The macro `AC_LANG_C' is obsolete.
 You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/c.m4:73: AC_LANG_C is expanded from...
 m4/zlib.m4:82: CHECK_ZLIB is expanded from...
-configure.ac:79: the top level])
-m4trace:configure.ac:79: -1- _m4_warn([obsolete], [The macro `AC_LANG_RESTORE' is obsolete.
+configure.ac:84: the top level])
+m4trace:configure.ac:84: -1- _m4_warn([obsolete], [The macro `AC_LANG_RESTORE' is obsolete.
 You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/lang.m4:176: AC_LANG_RESTORE is expanded from...
 m4/zlib.m4:82: CHECK_ZLIB is expanded from...
-configure.ac:79: the top level])
-m4trace:configure.ac:79: -1- AH_OUTPUT([HAVE_LIBZ], [/* Define to 1 if you have the `z\' library (-lz). */
+configure.ac:84: the top level])
+m4trace:configure.ac:84: -1- AH_OUTPUT([HAVE_LIBZ], [/* Define to 1 if you have the `z\' library (-lz). */
 #undef HAVE_LIBZ])
-m4trace:configure.ac:79: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBZ])
-m4trace:configure.ac:79: -1- m4_pattern_allow([^HAVE_LIBZ$])
-m4trace:configure.ac:82: -1- AC_SUBST([DISTCHECK_CONFIGURE_FLAGS], ["$DISTCHECK_CONFIGURE_FLAGS '--with-boost=$with_boost'"])
-m4trace:configure.ac:82: -1- AC_SUBST_TRACE([DISTCHECK_CONFIGURE_FLAGS])
-m4trace:configure.ac:82: -1- m4_pattern_allow([^DISTCHECK_CONFIGURE_FLAGS$])
-m4trace:configure.ac:82: -1- m4_pattern_allow([^BOOST_VERSION$])
-m4trace:configure.ac:82: -1- AC_SUBST([BOOST_CPPFLAGS])
-m4trace:configure.ac:82: -1- AC_SUBST_TRACE([BOOST_CPPFLAGS])
-m4trace:configure.ac:82: -1- m4_pattern_allow([^BOOST_CPPFLAGS$])
-m4trace:configure.ac:82: -1- m4_pattern_allow([^BOOST_LIB_VERSION$])
-m4trace:configure.ac:83: -1- AC_DEFINE_TRACE_LITERAL([HAVE_BOOST_DYNAMIC_BITSET_HPP])
-m4trace:configure.ac:83: -1- m4_pattern_allow([^HAVE_BOOST_DYNAMIC_BITSET_HPP$])
-m4trace:configure.ac:83: -1- AH_OUTPUT([HAVE_BOOST_DYNAMIC_BITSET_HPP], [/* Define to 1 if you have <boost/dynamic_bitset.hpp> */
+m4trace:configure.ac:84: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBZ])
+m4trace:configure.ac:84: -1- m4_pattern_allow([^HAVE_LIBZ$])
+m4trace:configure.ac:87: -1- AC_SUBST([DISTCHECK_CONFIGURE_FLAGS], ["$DISTCHECK_CONFIGURE_FLAGS '--with-boost=$with_boost'"])
+m4trace:configure.ac:87: -1- AC_SUBST_TRACE([DISTCHECK_CONFIGURE_FLAGS])
+m4trace:configure.ac:87: -1- m4_pattern_allow([^DISTCHECK_CONFIGURE_FLAGS$])
+m4trace:configure.ac:87: -1- m4_pattern_allow([^BOOST_VERSION$])
+m4trace:configure.ac:87: -1- AC_SUBST([BOOST_CPPFLAGS])
+m4trace:configure.ac:87: -1- AC_SUBST_TRACE([BOOST_CPPFLAGS])
+m4trace:configure.ac:87: -1- m4_pattern_allow([^BOOST_CPPFLAGS$])
+m4trace:configure.ac:87: -1- m4_pattern_allow([^BOOST_LIB_VERSION$])
+m4trace:configure.ac:88: -1- AC_DEFINE_TRACE_LITERAL([HAVE_BOOST_DYNAMIC_BITSET_HPP])
+m4trace:configure.ac:88: -1- m4_pattern_allow([^HAVE_BOOST_DYNAMIC_BITSET_HPP$])
+m4trace:configure.ac:88: -1- AH_OUTPUT([HAVE_BOOST_DYNAMIC_BITSET_HPP], [/* Define to 1 if you have <boost/dynamic_bitset.hpp> */
 #undef HAVE_BOOST_DYNAMIC_BITSET_HPP])
-m4trace:configure.ac:86: -1- AC_SUBST([GSL_CONFIG])
-m4trace:configure.ac:86: -1- AC_SUBST_TRACE([GSL_CONFIG])
-m4trace:configure.ac:86: -1- m4_pattern_allow([^GSL_CONFIG$])
-m4trace:configure.ac:86: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
+m4trace:configure.ac:91: -1- AC_SUBST([GSL_CONFIG])
+m4trace:configure.ac:91: -1- AC_SUBST_TRACE([GSL_CONFIG])
+m4trace:configure.ac:91: -1- m4_pattern_allow([^GSL_CONFIG$])
+m4trace:configure.ac:91: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
 You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2479: AC_TRY_RUN is expanded from...
 m4/gsl.m4:160: AX_PATH_GSL is expanded from...
-configure.ac:86: the top level])
-m4trace:configure.ac:86: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+configure.ac:91: the top level])
+m4trace:configure.ac:91: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
 You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
 m4/gsl.m4:160: AX_PATH_GSL is expanded from...
-configure.ac:86: the top level])
-m4trace:configure.ac:86: -1- AC_SUBST([GSL_CFLAGS])
-m4trace:configure.ac:86: -1- AC_SUBST_TRACE([GSL_CFLAGS])
-m4trace:configure.ac:86: -1- m4_pattern_allow([^GSL_CFLAGS$])
-m4trace:configure.ac:86: -1- AC_SUBST([GSL_LIBS])
-m4trace:configure.ac:86: -1- AC_SUBST_TRACE([GSL_LIBS])
-m4trace:configure.ac:86: -1- m4_pattern_allow([^GSL_LIBS$])
-m4trace:configure.ac:89: -1- AC_SUBST([XML2_CONFIG])
-m4trace:configure.ac:89: -1- AC_SUBST_TRACE([XML2_CONFIG])
-m4trace:configure.ac:89: -1- m4_pattern_allow([^XML2_CONFIG$])
-m4trace:configure.ac:89: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
+configure.ac:91: the top level])
+m4trace:configure.ac:91: -1- AC_SUBST([GSL_CFLAGS])
+m4trace:configure.ac:91: -1- AC_SUBST_TRACE([GSL_CFLAGS])
+m4trace:configure.ac:91: -1- m4_pattern_allow([^GSL_CFLAGS$])
+m4trace:configure.ac:91: -1- AC_SUBST([GSL_LIBS])
+m4trace:configure.ac:91: -1- AC_SUBST_TRACE([GSL_LIBS])
+m4trace:configure.ac:91: -1- m4_pattern_allow([^GSL_LIBS$])
+m4trace:configure.ac:94: -1- AC_SUBST([XML2_CONFIG])
+m4trace:configure.ac:94: -1- AC_SUBST_TRACE([XML2_CONFIG])
+m4trace:configure.ac:94: -1- m4_pattern_allow([^XML2_CONFIG$])
+m4trace:configure.ac:94: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
 You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2479: AC_TRY_RUN is expanded from...
 m4/libxml2.m4:188: AM_PATH_XML2 is expanded from...
-configure.ac:89: the top level])
-m4trace:configure.ac:89: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+configure.ac:94: the top level])
+m4trace:configure.ac:94: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
 You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
 m4/libxml2.m4:188: AM_PATH_XML2 is expanded from...
-configure.ac:89: the top level])
-m4trace:configure.ac:89: -1- AC_SUBST([XML_CPPFLAGS])
-m4trace:configure.ac:89: -1- AC_SUBST_TRACE([XML_CPPFLAGS])
-m4trace:configure.ac:89: -1- m4_pattern_allow([^XML_CPPFLAGS$])
-m4trace:configure.ac:89: -1- AC_SUBST([XML_LIBS])
-m4trace:configure.ac:89: -1- AC_SUBST_TRACE([XML_LIBS])
-m4trace:configure.ac:89: -1- m4_pattern_allow([^XML_LIBS$])
-m4trace:configure.ac:96: -1- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
+configure.ac:94: the top level])
+m4trace:configure.ac:94: -1- AC_SUBST([XML_CPPFLAGS])
+m4trace:configure.ac:94: -1- AC_SUBST_TRACE([XML_CPPFLAGS])
+m4trace:configure.ac:94: -1- m4_pattern_allow([^XML_CPPFLAGS$])
+m4trace:configure.ac:94: -1- AC_SUBST([XML_LIBS])
+m4trace:configure.ac:94: -1- AC_SUBST_TRACE([XML_LIBS])
+m4trace:configure.ac:94: -1- m4_pattern_allow([^XML_LIBS$])
+m4trace:configure.ac:101: -1- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
 You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:209: AC_HELP_STRING is expanded from...
 /var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:1391: AC_ARG_WITH is expanded from...
-configure.ac:96: the top level])
-m4trace:configure.ac:110: -1- AC_SUBST([xml2_config])
-m4trace:configure.ac:110: -1- AC_SUBST_TRACE([xml2_config])
-m4trace:configure.ac:110: -1- m4_pattern_allow([^xml2_config$])
-m4trace:configure.ac:137: -1- AC_DEFINE_TRACE_LITERAL([XML_DELEGATE])
-m4trace:configure.ac:137: -1- m4_pattern_allow([^XML_DELEGATE$])
-m4trace:configure.ac:137: -1- AH_OUTPUT([XML_DELEGATE], [/* Define if you have XML library */
+configure.ac:101: the top level])
+m4trace:configure.ac:115: -1- AC_SUBST([xml2_config])
+m4trace:configure.ac:115: -1- AC_SUBST_TRACE([xml2_config])
+m4trace:configure.ac:115: -1- m4_pattern_allow([^xml2_config$])
+m4trace:configure.ac:142: -1- AC_DEFINE_TRACE_LITERAL([XML_DELEGATE])
+m4trace:configure.ac:142: -1- m4_pattern_allow([^XML_DELEGATE$])
+m4trace:configure.ac:142: -1- AH_OUTPUT([XML_DELEGATE], [/* Define if you have XML library */
 #undef XML_DELEGATE])
-m4trace:configure.ac:145: -1- AM_CONDITIONAL([XML_DELEGATE], [test "$have_xml" = 'yes'])
-m4trace:configure.ac:145: -1- AC_SUBST([XML_DELEGATE_TRUE])
-m4trace:configure.ac:145: -1- AC_SUBST_TRACE([XML_DELEGATE_TRUE])
-m4trace:configure.ac:145: -1- m4_pattern_allow([^XML_DELEGATE_TRUE$])
-m4trace:configure.ac:145: -1- AC_SUBST([XML_DELEGATE_FALSE])
-m4trace:configure.ac:145: -1- AC_SUBST_TRACE([XML_DELEGATE_FALSE])
-m4trace:configure.ac:145: -1- m4_pattern_allow([^XML_DELEGATE_FALSE$])
-m4trace:configure.ac:145: -1- _AM_SUBST_NOTMAKE([XML_DELEGATE_TRUE])
-m4trace:configure.ac:145: -1- _AM_SUBST_NOTMAKE([XML_DELEGATE_FALSE])
-m4trace:configure.ac:146: -1- AC_SUBST([XML_LIBS])
-m4trace:configure.ac:146: -1- AC_SUBST_TRACE([XML_LIBS])
-m4trace:configure.ac:146: -1- m4_pattern_allow([^XML_LIBS$])
-m4trace:configure.ac:151: -1- AC_DEFINE_TRACE_LITERAL([HAVE_GETOPT_LONG])
-m4trace:configure.ac:151: -1- m4_pattern_allow([^HAVE_GETOPT_LONG$])
-m4trace:configure.ac:151: -1- AH_OUTPUT([HAVE_GETOPT_LONG], [/* Defined when getopt_long is available */
+m4trace:configure.ac:150: -1- AM_CONDITIONAL([XML_DELEGATE], [test "$have_xml" = 'yes'])
+m4trace:configure.ac:150: -1- AC_SUBST([XML_DELEGATE_TRUE])
+m4trace:configure.ac:150: -1- AC_SUBST_TRACE([XML_DELEGATE_TRUE])
+m4trace:configure.ac:150: -1- m4_pattern_allow([^XML_DELEGATE_TRUE$])
+m4trace:configure.ac:150: -1- AC_SUBST([XML_DELEGATE_FALSE])
+m4trace:configure.ac:150: -1- AC_SUBST_TRACE([XML_DELEGATE_FALSE])
+m4trace:configure.ac:150: -1- m4_pattern_allow([^XML_DELEGATE_FALSE$])
+m4trace:configure.ac:150: -1- _AM_SUBST_NOTMAKE([XML_DELEGATE_TRUE])
+m4trace:configure.ac:150: -1- _AM_SUBST_NOTMAKE([XML_DELEGATE_FALSE])
+m4trace:configure.ac:151: -1- AC_SUBST([XML_LIBS])
+m4trace:configure.ac:151: -1- AC_SUBST_TRACE([XML_LIBS])
+m4trace:configure.ac:151: -1- m4_pattern_allow([^XML_LIBS$])
+m4trace:configure.ac:156: -1- AC_DEFINE_TRACE_LITERAL([HAVE_GETOPT_LONG])
+m4trace:configure.ac:156: -1- m4_pattern_allow([^HAVE_GETOPT_LONG$])
+m4trace:configure.ac:156: -1- AH_OUTPUT([HAVE_GETOPT_LONG], [/* Defined when getopt_long is available */
 #undef HAVE_GETOPT_LONG])
-m4trace:configure.ac:152: -2- AC_DEFINE_TRACE_LITERAL([HAVE_GETOPT_LONG])
-m4trace:configure.ac:152: -2- m4_pattern_allow([^HAVE_GETOPT_LONG$])
-m4trace:configure.ac:174: -1- AC_CONFIG_FILES([Makefile doc/Makefile src/lr/Makefile src/library/Makefile src/Makefile])
-m4trace:configure.ac:175: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
-m4trace:configure.ac:175: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:175: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([LTLIBOBJS])
-m4trace:configure.ac:175: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([top_builddir])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([srcdir])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([abs_srcdir])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([top_srcdir])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([abs_top_srcdir])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([builddir])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([abs_builddir])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([abs_top_builddir])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([INSTALL])
-m4trace:configure.ac:175: -1- AC_SUBST_TRACE([MKDIR_P])
-m4trace:configure.ac:175: -1- AC_REQUIRE_AUX_FILE([ltmain.sh])
+m4trace:configure.ac:157: -2- AC_DEFINE_TRACE_LITERAL([HAVE_GETOPT_LONG])
+m4trace:configure.ac:157: -2- m4_pattern_allow([^HAVE_GETOPT_LONG$])
+m4trace:configure.ac:179: -1- AC_CONFIG_FILES([Makefile doc/Makefile src/lr/Makefile src/library/Makefile src/Makefile])
+m4trace:configure.ac:180: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
+m4trace:configure.ac:180: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:180: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([LTLIBOBJS])
+m4trace:configure.ac:180: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([top_builddir])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([srcdir])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([abs_srcdir])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([top_srcdir])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([abs_top_srcdir])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([builddir])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([abs_builddir])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([abs_top_builddir])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([INSTALL])
+m4trace:configure.ac:180: -1- AC_SUBST_TRACE([MKDIR_P])
+m4trace:configure.ac:180: -1- AC_REQUIRE_AUX_FILE([ltmain.sh])
