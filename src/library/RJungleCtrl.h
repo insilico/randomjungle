@@ -207,7 +207,7 @@ public:
           // get new tree size
           if (ntreeAutoTweek) {
             if (colMaskVec == NULL) {
-              // set inital treesize
+              // set initial treesize
               binder.par.ntree = Helper::getTreeSizeProb(probNtree,
                   binder.par.mtry, binder.par.ncol);
               this->binder.par.ntree = binder.par.ntree;
@@ -566,7 +566,10 @@ public:
     // get data from file
     par = data->getDataFromCSV(); // and return updated parameters
 #ifdef __DEBUG__
-    //*io.outVerbose << *data << std::endl;
+	std::ofstream ofs("data_matrix_rj.txt");
+	data->print(ofs);
+	ofs.close();
+//    *io.outVerbose << *data << std::endl;
 #endif
 		
     // read parameter if prediction is wanted

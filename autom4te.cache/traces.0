@@ -2787,81 +2787,82 @@ m4trace:configure.ac:48: -1- LT_INIT
 m4trace:configure.ac:51: -2- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/general.m4:209: AC_HELP_STRING is expanded from...
 configure.ac:51: the top level])
-m4trace:configure.ac:63: -1- m4_pattern_allow([^HAVE__BOOL$])
-m4trace:configure.ac:63: -1- m4_pattern_allow([^HAVE_STDBOOL_H$])
-m4trace:configure.ac:65: -1- m4_pattern_allow([^size_t$])
+m4trace:configure.ac:62: -1- m4_pattern_allow([^HAVE__BOOL$])
+m4trace:configure.ac:62: -1- m4_pattern_allow([^HAVE_STDBOOL_H$])
+m4trace:configure.ac:64: -1- m4_pattern_allow([^size_t$])
+m4trace:configure.ac:65: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:66: -1- m4_pattern_allow([^POW_LIB$])
 m4trace:configure.ac:66: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:67: -1- m4_pattern_allow([^POW_LIB$])
-m4trace:configure.ac:67: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:69: -1- m4_pattern_allow([^SIZEOF_VOID_P$])
-m4trace:configure.ac:72: -1- m4_pattern_allow([^MAKEINFO$])
-m4trace:configure.ac:76: -1- m4_pattern_allow([^HAVE_LIBPTHREAD$])
-m4trace:configure.ac:81: -1- CHECK_ZLIB
-m4trace:configure.ac:81: -1- _m4_warn([obsolete], [The macro `AC_LANG_SAVE' is obsolete.
+m4trace:configure.ac:67: -1- m4_pattern_allow([^SIZEOF_VOID_P$])
+m4trace:configure.ac:70: -1- m4_pattern_allow([^MAKEINFO$])
+m4trace:configure.ac:74: -1- m4_pattern_allow([^HAVE_LIBGOMP$])
+m4trace:configure.ac:80: -1- m4_pattern_allow([^HAVE_LIBPTHREAD$])
+m4trace:configure.ac:84: -1- CHECK_ZLIB
+m4trace:configure.ac:84: -1- _m4_warn([obsolete], [The macro `AC_LANG_SAVE' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/lang.m4:126: AC_LANG_SAVE is expanded from...
 m4/zlib.m4:25: CHECK_ZLIB is expanded from...
-configure.ac:81: the top level])
-m4trace:configure.ac:81: -1- _m4_warn([obsolete], [The macro `AC_LANG_C' is obsolete.
+configure.ac:84: the top level])
+m4trace:configure.ac:84: -1- _m4_warn([obsolete], [The macro `AC_LANG_C' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/c.m4:73: AC_LANG_C is expanded from...
 m4/zlib.m4:25: CHECK_ZLIB is expanded from...
-configure.ac:81: the top level])
-m4trace:configure.ac:81: -1- _m4_warn([obsolete], [The macro `AC_LANG_RESTORE' is obsolete.
+configure.ac:84: the top level])
+m4trace:configure.ac:84: -1- _m4_warn([obsolete], [The macro `AC_LANG_RESTORE' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/lang.m4:135: AC_LANG_RESTORE is expanded from...
 m4/zlib.m4:25: CHECK_ZLIB is expanded from...
-configure.ac:81: the top level])
-m4trace:configure.ac:81: -1- m4_pattern_allow([^HAVE_LIBZ$])
-m4trace:configure.ac:84: -1- BOOST_REQUIRE
-m4trace:configure.ac:84: -1- m4_pattern_allow([^DISTCHECK_CONFIGURE_FLAGS$])
-m4trace:configure.ac:84: -1- m4_pattern_allow([^BOOST_VERSION$])
-m4trace:configure.ac:84: -1- m4_pattern_allow([^BOOST_CPPFLAGS$])
-m4trace:configure.ac:84: -1- m4_pattern_allow([^BOOST_LIB_VERSION$])
-m4trace:configure.ac:85: -1- BOOST_FIND_HEADER([boost/dynamic_bitset.hpp], [as_fn_error $? "could not find required headers of Boost c++. Install boost c++ libraries." "$LINENO" 5])
-m4trace:configure.ac:85: -1- m4_pattern_allow([^HAVE_BOOST_DYNAMIC_BITSET_HPP$])
-m4trace:configure.ac:88: -1- AX_PATH_GSL([1.8], [], [as_fn_error $? "could not find required version of GSL" "$LINENO" 5])
-m4trace:configure.ac:88: -1- m4_pattern_allow([^GSL_CONFIG$])
-m4trace:configure.ac:88: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2765: AC_TRY_RUN is expanded from...
-m4/gsl.m4:5: AX_PATH_GSL is expanded from...
-configure.ac:88: the top level])
-m4trace:configure.ac:88: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2688: AC_TRY_LINK is expanded from...
-m4/gsl.m4:5: AX_PATH_GSL is expanded from...
-configure.ac:88: the top level])
-m4trace:configure.ac:88: -1- m4_pattern_allow([^GSL_CFLAGS$])
-m4trace:configure.ac:88: -1- m4_pattern_allow([^GSL_LIBS$])
-m4trace:configure.ac:91: -1- AM_PATH_XML2([2.0.0], [], [as_fn_error $? "could not find required version of XML2" "$LINENO" 5])
-m4trace:configure.ac:91: -1- m4_pattern_allow([^XML2_CONFIG$])
+configure.ac:84: the top level])
+m4trace:configure.ac:84: -1- m4_pattern_allow([^HAVE_LIBZ$])
+m4trace:configure.ac:87: -1- BOOST_REQUIRE
+m4trace:configure.ac:87: -1- m4_pattern_allow([^DISTCHECK_CONFIGURE_FLAGS$])
+m4trace:configure.ac:87: -1- m4_pattern_allow([^BOOST_VERSION$])
+m4trace:configure.ac:87: -1- m4_pattern_allow([^BOOST_CPPFLAGS$])
+m4trace:configure.ac:87: -1- m4_pattern_allow([^BOOST_LIB_VERSION$])
+m4trace:configure.ac:88: -1- BOOST_FIND_HEADER([boost/dynamic_bitset.hpp], [as_fn_error $? "could not find required headers of Boost c++. Install boost c++ libraries." "$LINENO" 5])
+m4trace:configure.ac:88: -1- m4_pattern_allow([^HAVE_BOOST_DYNAMIC_BITSET_HPP$])
+m4trace:configure.ac:91: -1- AX_PATH_GSL([1.8], [], [as_fn_error $? "could not find required version of GSL" "$LINENO" 5])
+m4trace:configure.ac:91: -1- m4_pattern_allow([^GSL_CONFIG$])
 m4trace:configure.ac:91: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/general.m4:2765: AC_TRY_RUN is expanded from...
-m4/libxml2.m4:12: AM_PATH_XML2 is expanded from...
+m4/gsl.m4:5: AX_PATH_GSL is expanded from...
 configure.ac:91: the top level])
 m4trace:configure.ac:91: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/general.m4:2688: AC_TRY_LINK is expanded from...
-m4/libxml2.m4:12: AM_PATH_XML2 is expanded from...
+m4/gsl.m4:5: AX_PATH_GSL is expanded from...
 configure.ac:91: the top level])
-m4trace:configure.ac:91: -1- m4_pattern_allow([^XML_CPPFLAGS$])
-m4trace:configure.ac:91: -1- m4_pattern_allow([^XML_LIBS$])
-m4trace:configure.ac:94: -1- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
+m4trace:configure.ac:91: -1- m4_pattern_allow([^GSL_CFLAGS$])
+m4trace:configure.ac:91: -1- m4_pattern_allow([^GSL_LIBS$])
+m4trace:configure.ac:94: -1- AM_PATH_XML2([2.0.0], [], [as_fn_error $? "could not find required version of XML2" "$LINENO" 5])
+m4trace:configure.ac:94: -1- m4_pattern_allow([^XML2_CONFIG$])
+m4trace:configure.ac:94: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
+You should run autoupdate.], [../../lib/autoconf/general.m4:2765: AC_TRY_RUN is expanded from...
+m4/libxml2.m4:12: AM_PATH_XML2 is expanded from...
+configure.ac:94: the top level])
+m4trace:configure.ac:94: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [../../lib/autoconf/general.m4:2688: AC_TRY_LINK is expanded from...
+m4/libxml2.m4:12: AM_PATH_XML2 is expanded from...
+configure.ac:94: the top level])
+m4trace:configure.ac:94: -1- m4_pattern_allow([^XML_CPPFLAGS$])
+m4trace:configure.ac:94: -1- m4_pattern_allow([^XML_LIBS$])
+m4trace:configure.ac:97: -1- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/general.m4:209: AC_HELP_STRING is expanded from...
 ../../lib/autoconf/general.m4:1482: AC_ARG_WITH is expanded from...
-configure.ac:94: the top level])
-m4trace:configure.ac:112: -1- m4_pattern_allow([^xml2_config$])
-m4trace:configure.ac:139: -1- m4_pattern_allow([^XML_DELEGATE$])
-m4trace:configure.ac:147: -1- AM_CONDITIONAL([XML_DELEGATE], [test "$have_xml" = 'yes'])
-m4trace:configure.ac:147: -1- m4_pattern_allow([^XML_DELEGATE_TRUE$])
-m4trace:configure.ac:147: -1- m4_pattern_allow([^XML_DELEGATE_FALSE$])
-m4trace:configure.ac:147: -1- _AM_SUBST_NOTMAKE([XML_DELEGATE_TRUE])
-m4trace:configure.ac:147: -1- _AM_SUBST_NOTMAKE([XML_DELEGATE_FALSE])
-m4trace:configure.ac:148: -1- m4_pattern_allow([^XML_LIBS$])
-m4trace:configure.ac:153: -1- m4_pattern_allow([^HAVE_GETOPT_LONG$])
-m4trace:configure.ac:154: -2- m4_pattern_allow([^HAVE_GETOPT_LONG$])
-m4trace:configure.ac:177: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:177: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:177: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
-m4trace:configure.ac:177: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
-m4trace:configure.ac:177: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
-m4trace:configure.ac:177: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
-m4trace:configure.ac:177: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
-m4trace:configure.ac:177: -1- _AC_AM_CONFIG_HEADER_HOOK(["$ac_file"])
-m4trace:configure.ac:177: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
-m4trace:configure.ac:177: -1- _LT_PROG_LTMAIN
+configure.ac:97: the top level])
+m4trace:configure.ac:115: -1- m4_pattern_allow([^xml2_config$])
+m4trace:configure.ac:142: -1- m4_pattern_allow([^XML_DELEGATE$])
+m4trace:configure.ac:150: -1- AM_CONDITIONAL([XML_DELEGATE], [test "$have_xml" = 'yes'])
+m4trace:configure.ac:150: -1- m4_pattern_allow([^XML_DELEGATE_TRUE$])
+m4trace:configure.ac:150: -1- m4_pattern_allow([^XML_DELEGATE_FALSE$])
+m4trace:configure.ac:150: -1- _AM_SUBST_NOTMAKE([XML_DELEGATE_TRUE])
+m4trace:configure.ac:150: -1- _AM_SUBST_NOTMAKE([XML_DELEGATE_FALSE])
+m4trace:configure.ac:151: -1- m4_pattern_allow([^XML_LIBS$])
+m4trace:configure.ac:156: -1- m4_pattern_allow([^HAVE_GETOPT_LONG$])
+m4trace:configure.ac:157: -2- m4_pattern_allow([^HAVE_GETOPT_LONG$])
+m4trace:configure.ac:180: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:180: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:180: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
+m4trace:configure.ac:180: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
+m4trace:configure.ac:180: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
+m4trace:configure.ac:180: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
+m4trace:configure.ac:180: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
+m4trace:configure.ac:180: -1- _AC_AM_CONFIG_HEADER_HOOK(["$ac_file"])
+m4trace:configure.ac:180: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:180: -1- _LT_PROG_LTMAIN
