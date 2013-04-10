@@ -41,9 +41,9 @@ AC_CANONICAL_HOST
 # Checks for programs and sets appropriate environment variables.
 AC_PROG_CXX
 AC_PROG_CPP
+AC_PROG_F77
 AC_PROG_LN_S
 AC_PROG_LIBTOOL
-AC_F77_LIBRARY_LDFLAGS
 
 LT_INIT
 

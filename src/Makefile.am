@@ -9,7 +9,7 @@ AM_FFLAGS=$(my_include_paths) -x f77-cpp-input
 
 my_ld_paths = $(LDFLAGS) -L$(top_srcdir)/src/$(LIBDIR) -L$(top_srcdir)/src/lr
 my_ld_paths += -L/usr/local/lib
-my_ld_flags = -lrjungle -llr @FLIBS@ -lgsl -lgslcblas
+my_ld_flags = -lrjungle -llr -lgsl -lgslcblas
 
 ### SHARED
 # the program to build

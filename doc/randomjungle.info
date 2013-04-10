@@ -1,7 +1,7 @@
-This is randomjungle.info, produced by makeinfo version 4.8 from
+This is randomjungle.info, produced by makeinfo version 4.13 from
 randomjungle.texi.
 
-   This manual (6 February 2012) is for Random Jungle (RJ) version
+This manual (8 February 2013) is for Random Jungle (RJ) version
 1.2.362, a package containing an implementation of the Random Forests
 (TM) method.
 
@@ -25,7 +25,7 @@ File: randomjungle.info,  Node: Top,  Next: Preliminaries,  Up: (dir)
 Random Jungle
 *************
 
-This manual (6 February 2012) is for Random Jungle (RJ) version
+This manual (8 February 2013) is for Random Jungle (RJ) version
 1.2.362, a package containing an implementation of the Random Forests
 (TM) method.
 
@@ -696,8 +696,8 @@ File: randomjungle.info,  Node: Standard files,  Next: Log file,  Up: Output dat
 5.1 The standard output files
 =============================
 
-If `rjungle' is executed it will always produce three files.  See *Note
-Log file::, *Note Confusion file:: and *Note Importance file::.  You
+If `rjungle' is executed it will always produce three files.  See *note
+Log file::, *note Confusion file:: and *note Importance file::.  You
 can run an example in your `randomjungle-1.2.362' directory and see it.
      $ cd tests
      $ rjungle -f test.ped -p -v -M2
@@ -2220,7 +2220,7 @@ macro is introduced the first time.
  [index ]
 * Menu:
 
-* =:                                     Operation modes.      (line 87)
+* =:                                     Operation modes.      (line 71)
 * cells:                                 Input the whole data. (line 15)
 * names:                                 Input the whole data. (line 10)
 
@@ -2290,44 +2290,44 @@ C.2 Index for many concepts
 
 
 Tag Table:
-Node: Top854
-Node: Preliminaries4222
-Node: Intro4957
-Node: History5661
-Node: Bugs6317
-Node: Manual7574
-Node: Install9043
-Node: Compiling and installing9285
-Node: Invoking Random Jungle10321
-Node: Operation modes12292
-Node: Input data21613
-Node: Input the whole data21957
-Node: Restricted analysis23560
-Node: Output data23877
-Node: Standard files24357
-Node: Log file24847
-Node: Confusion file25095
-Node: Prediction file25739
-Node: Importance file26060
-Node: Verbose file26760
-Node: Error codes28212
-Node: Runtime error codes28430
-Node: Application28705
-Node: Example129459
-Node: Example229847
-Node: Example330086
-Node: Example430990
-Node: Example531554
-Node: Example632101
-Node: Example732451
-Node: Example833191
-Node: Example933747
-Node: Copying This Package34620
-Node: GNU General Public License35157
-Node: Copying This Manual72748
-Node: GNU Free Documentation License73290
-Node: Indices95696
-Node: Macro index95991
-Node: Concept index96559
+Node: Top852
+Node: Preliminaries4220
+Node: Intro4955
+Node: History5659
+Node: Bugs6315
+Node: Manual7572
+Node: Install9041
+Node: Compiling and installing9283
+Node: Invoking Random Jungle10319
+Node: Operation modes12290
+Node: Input data21611
+Node: Input the whole data21955
+Node: Restricted analysis23558
+Node: Output data23875
+Node: Standard files24355
+Node: Log file24845
+Node: Confusion file25093
+Node: Prediction file25737
+Node: Importance file26058
+Node: Verbose file26758
+Node: Error codes28210
+Node: Runtime error codes28428
+Node: Application28703
+Node: Example129457
+Node: Example229845
+Node: Example330084
+Node: Example430988
+Node: Example531552
+Node: Example632099
+Node: Example732449
+Node: Example833189
+Node: Example933745
+Node: Copying This Package34618
+Node: GNU General Public License35155
+Node: Copying This Manual72746
+Node: GNU Free Documentation License73288
+Node: Indices95694
+Node: Macro index95989
+Node: Concept index96557
 
 End Tag Table
